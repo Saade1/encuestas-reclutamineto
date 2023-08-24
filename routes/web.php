@@ -1,18 +1,22 @@
 <?php
 
+// use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Homecontroller;
+use App\Http\Controllers\encuestaController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::get('/', Homecontroller::class);
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('encuestas',[EncuestaController::class,'index']);
+
+Route::get('encuestas/create', [EncuestaController::class,'create']);
+
+Route::get ('/encuestas/{encuesta}',[EncuestaController::class,'show']);
+
+// Route::get('encuestas/{encuesta}/{categoria?}', function ($encuesta, $categoria = null) {
+//     if ($categoria) {
+//         return "Encuesta $encuesta, en la categoria $categoria";
+//     } else {
+//         return "Encuesta :$encuesta";
+//     }
+// });
