@@ -7,11 +7,16 @@ use App\Http\Controllers\encuestaController;
 
 Route::get('/', Homecontroller::class);
 
-Route::get('encuestas',[EncuestaController::class,'index']);
+// Route::get('encuestas',[encuestaController::class,'index'])->name('encuestas.index');
 
-Route::get('encuestas/create', [EncuestaController::class,'create']);
+Route::controller(encuestaController::class)->group(function () {
 
-Route::get ('/encuestas/{encuesta}',[EncuestaController::class,'show']);
+    Route::get('encuestas', 'index')->name('survey.index');
+
+    Route::get('encuestas/crear', 'create')->name('survey.create');
+
+    Route::get('/encuestas/{encuesta}', 'show')->name('survey.show');
+});
 
 // Route::get('encuestas/{encuesta}/{categoria?}', function ($encuesta, $categoria = null) {
 //     if ($categoria) {

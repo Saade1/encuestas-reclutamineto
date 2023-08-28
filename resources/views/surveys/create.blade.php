@@ -1,9 +1,10 @@
 @extends ('layouts.plantilla')
 
-@section('title', 'home')
+@section('title', 'Crear encuesta')
 
 @section('content')
 
-    <h1>home</h1>
+<h1>crear encuestas</h1>
 
 @endsection
+
