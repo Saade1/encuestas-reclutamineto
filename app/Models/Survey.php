@@ -11,6 +11,5 @@ class Survey extends Model
 
     protected $table = "surveys";
 
-    
 }
 

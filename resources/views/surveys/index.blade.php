@@ -6,11 +6,13 @@
 
     <h1>Bienvenido a la pagina inicial de encuestas</h1>
     <a href="{{route('survey.create')}}">Crear encuesta</a>
+    
     <ul>
         @foreach ($survey as $surveys)
             <li>
-                {{$surveys->id}}
+                <a href="{{route('survey.show',$surveys->id)}}">{{$surveys->title}}</a>
             </li>
+            
         @endforeach
     </ul>
     {{$survey->links()}}
