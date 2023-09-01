@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h1>Editar encuestas</h1>
+    <h1>Editar encuestas mk2</h1>
 
     <form action="{{ route('survey.update',$survey)}}" method="POST">
         @csrf
