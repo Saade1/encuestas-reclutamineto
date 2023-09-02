@@ -1,5 +1,3 @@
-
-
 @extends('layouts.plantilla')
 
 @section('title', 'Encuesta ' . $survey->title)

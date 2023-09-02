@@ -3,9 +3,9 @@
 // use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\Homecontroller;
-use App\Http\Controllers\encuestaController;
+use App\Http\Controllers\surveyController;
 
-Route::controller(encuestaController::class)->group(function () {
+Route::controller(surveyController  ::class)->group(function () {
 
     Route::get('/', 'index')->name('survey.index');
 

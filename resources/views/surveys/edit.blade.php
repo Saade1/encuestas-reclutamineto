@@ -6,39 +6,44 @@
 
     <h1>Editar encuestas mk2</h1>
 
-    <form action="{{ route('survey.update',$survey)}}" method="POST">
+    <form action="{{ route('survey.update', $survey) }}" method="POST">
         @csrf
         @method('put')
         <label>
             Tipo de pregunta:
             <select name="question_type" class="form-select" aria-label="Default select example">
                 <option value="" disabled selected>Selecciona una opción</option>
-                <option value="open" <?php if ($survey->question_type === 'open') {
-                    echo 'selected';
-                } ?>>Abierta</option>
-                <option value="multiple_choice" <?php if ($survey->question_type === 'multiple_choice') {
-                    echo 'selected';
-                } ?>>Opción múltiple</option>
-                <option value="list" <?php if ($survey->question_type === 'list') {
-                    echo 'selected';
-                } ?>>Lista</option>
-                <option value="combined" <?php if ($survey->question_type === 'combined') {
-                    echo 'selected';
-                } ?>>Combinada</option>
+                <option value="open" {{ old('question_type', $survey->question_type) === 'open' ? 'selected' : '' }}>
+                    Abierta</option>
+                <option value="multiple_choice"
+                    {{ old('question_type', $survey->question_type) === 'multiple_choice' ? 'selected' : '' }}>Opción
+                    múltiple</option>
+                <option value="list" {{ old('question_type', $survey->question_type) === 'list' ? 'selected' : '' }}>Lista
+                </option>
+                <option value="combined" {{ old('question_type', $survey->question_type) === 'combined' ? 'selected' : '' }}>
+                    Combinada</option>
             </select>
         </label>
+        @error('question_type')
+            <br>
+            <small>*El tipo de pregunta es requerido*</small>
+            <br>
+        @enderror
         <label>
             Tipo de encuesta:
             <select name="survey_type" class="form-select" aria-label="Default select example">
                 <option value="" disabled selected>Selecciona una opción</option>
-                <option value="anonymous"<?php if ($survey->survey_type === 'anonymous') {
-                    echo 'selected';
-                } ?>>Anónimo</option>
-                <option value="public"<?php if ($survey->survey_type === 'public') {
-                    echo 'selected';
-                } ?>>Público</option>
+                <option value="anonymous" {{ old('survey_type', $survey->survey_type) === 'anonymous' ? 'selected' : '' }}>
+                    Anónimo</option>
+                <option value="public" {{ old('survey_type', $survey->survey_type) === 'public' ? 'selected' : '' }}>Público
+                </option>
             </select>
         </label>
+        @error('survey_type')
+            <br>
+            <small>*El tipo de encuesta es requerido*</small>
+            <br>
+        @enderror
         <label>
             Fecha de creación:
             <input type="datetime-local" name="created_at" value="<?= $survey['created_at'] ?>">
@@ -49,18 +54,32 @@
         </label>
         <label>
             Fecha de vigencia:
-            <input type="datetime-local" name="effective_date" value="<?= $survey['effective_date'] ?>">
+            <input type="datetime-local" name="effective_date" value="{{ old('effective_date', $survey->effective_date) }}">
         </label>
+        @error('effective_date')
+            <br>
+            <small>*La fecha y hora de vigencia es requerido*</small>
+            <br>
+        @enderror
         <label>
             Título:
-            <input type="text" name="title" value="{{ $survey->title }}">
+            <input type="text" name="title" value="{{ old('title', $survey->title) }}">
         </label>
+        @error('title')
+            <br>
+            <small>*El titulo es requerido*</small>
+            <br>
+        @enderror
         <br>
         <label>
             Indicaciones:
-            <textarea name="indications" rows="5">{{ $survey->indications }}</textarea>
+            <textarea name="indications" rows="5">{{ old('indications', $survey->indications) }}</textarea>
         </label>
-
+        @error('indications')
+            <br>
+            <small>*Las indicaciones son requeridas*</small>
+            <br>
+        @enderror
         <br>
         <button type="submit">Actualizar formulario</button>
     </form>

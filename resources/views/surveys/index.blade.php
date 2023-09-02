@@ -4,16 +4,38 @@
 
 @section('content')
 
-    <h1>Bienvenido a la pagina inicial de encuestas</h1>
-    <a href="{{route('survey.create')}}">Crear encuesta</a>
-    
-    <ul>
-        @foreach ($survey as $surveys)
-            <li>
-                <a href="{{route('survey.show',$surveys->id)}}">{{$surveys->title}}</a>
-            </li>
-            
-        @endforeach
-    </ul>
-    {{$survey->links()}}
+    <h1>Bienvenido a la página inicial de encuestas</h1>
+    <a href="{{ route('survey.create') }}">Crear encuesta</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Título</th>
+                <th>Fecha y hora de creación</th>
+                <th>Fecha y hora de vigencia</th>
+                <th>Tipo</th>
+                <th>Estatus</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($survey as $surveys)
+                <tr>
+                    <td>{{ $surveys->id }}</td>
+                    <td>{{ $surveys->title }}</td>
+                    <td>{{ $surveys->created_at }}</td>
+                    <td>{{ $surveys->effective_date }}</td>
+                    <td>{{ $surveys->survey_type }}</td>
+                    <td>{{ $surveys->estatus }}</td>
+                    <td>
+                        <a href="{{ route('survey.show', $surveys->id) }}">Ver</a>
+                        <a href="{{ route('survey.edit', $surveys->id) }}">Editar</a>
+                    </td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+    {{ $survey->links() }}
 @endsection
+

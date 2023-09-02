@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Survey;
 use Illuminate\Http\Request;
 
-class Encuestacontroller extends Controller
+class surveyController extends Controller
 {
     public function index()
     {
@@ -55,6 +54,12 @@ class Encuestacontroller extends Controller
 
     public function update(Request $request, Survey $survey)
     {
+        $request->validate([
+            'question_type' => 'required', 'survey_type' => 'required',
+            'title' => 'required', 'indications' => 'required', 'created_at' => 'required',
+            'updated_at' => 'required', 'effective_date' => 'required'
+        ]);
+        
         $survey->question_type = $request->question_type;
         $survey->survey_type = $request->survey_type;
         $survey->title = $request->title;
