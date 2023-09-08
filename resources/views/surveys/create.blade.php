@@ -20,14 +20,11 @@
         </label>
         @error('question_type')
             <br>
-            <small>*El tipo de pregunta es requerido*</small>
+            <small>{{ $message }}</small>
             <br>
         @enderror
         <label>
             Tipo de encuesta:
-            <label>
-                Tipo de pregunta:
-            </label>
             <select name="survey_type" class="form-select" aria-label="Default select example">
                 <option value="" disabled selected>Selecciona una opción</option>
                 <option value="anonymous"{{ old('survey_type') == 'anonymous' ? 'selected' : '' }}>Anónimo</option>
@@ -36,7 +33,7 @@
         </label>
         @error('survey_type')
             <br>
-            <small>*El tipo de encuesta es requerido*</small>
+            <small>{{ $message }}</small>
             <br>
         @enderror
         <label>
@@ -53,7 +50,7 @@
         </label>
         @error('effective_date')
             <br>
-            <small>*La fecha y hora de vigencia es requerido*</small>
+            <small>{{ $message }}</small>
             <br>
         @enderror
         <label>
@@ -62,7 +59,7 @@
         </label>
         @error('title')
             <br>
-            <small>*El titulo es requerido*</small>
+            <small>{{ $message }}</small>
             <br>
         @enderror
         <br>
@@ -72,7 +69,7 @@
         </label>
         @error('indications')
             <br>
-            <small>*Las indicaciones son requeridas*</small>
+            <small>{{ $message }}</small>
             <br>
         @enderror
         <br>

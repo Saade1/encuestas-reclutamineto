@@ -5,7 +5,7 @@
 @section('content')
 
     <h1>Editar encuestas mk2</h1>
-
+    <a href="{{ route('survey.index') }}">Regresar a encuestas</a>
     <form action="{{ route('survey.update', $survey) }}" method="POST">
         @csrf
         @method('put')
@@ -20,14 +20,15 @@
                     múltiple</option>
                 <option value="list" {{ old('question_type', $survey->question_type) === 'list' ? 'selected' : '' }}>Lista
                 </option>
-                <option value="combined" {{ old('question_type', $survey->question_type) === 'combined' ? 'selected' : '' }}>
+                <option value="combined"
+                    {{ old('question_type', $survey->question_type) === 'combined' ? 'selected' : '' }}>
                     Combinada</option>
             </select>
         </label>
         @error('question_type')
-            <br>
-            <small>*El tipo de pregunta es requerido*</small>
-            <br>
+        <br>
+        <small>{{ $message }}</small>
+        <br>
         @enderror
         <label>
             Tipo de encuesta:
@@ -40,9 +41,9 @@
             </select>
         </label>
         @error('survey_type')
-            <br>
-            <small>*El tipo de encuesta es requerido*</small>
-            <br>
+        <br>
+        <small>{{ $message }}</small>
+        <br>
         @enderror
         <label>
             Fecha de creación:
@@ -57,18 +58,18 @@
             <input type="datetime-local" name="effective_date" value="{{ old('effective_date', $survey->effective_date) }}">
         </label>
         @error('effective_date')
-            <br>
-            <small>*La fecha y hora de vigencia es requerido*</small>
-            <br>
+        <br>
+        <small>{{ $message }}</small>
+        <br>
         @enderror
         <label>
             Título:
             <input type="text" name="title" value="{{ old('title', $survey->title) }}">
         </label>
         @error('title')
-            <br>
-            <small>*El titulo es requerido*</small>
-            <br>
+        <br>
+        <small>{{ $message }}</small>
+        <br>
         @enderror
         <br>
         <label>
@@ -76,9 +77,9 @@
             <textarea name="indications" rows="5">{{ old('indications', $survey->indications) }}</textarea>
         </label>
         @error('indications')
-            <br>
-            <small>*Las indicaciones son requeridas*</small>
-            <br>
+        <br>
+        <small>{{ $message }}</small>
+        <br>
         @enderror
         <br>
         <button type="submit">Actualizar formulario</button>
