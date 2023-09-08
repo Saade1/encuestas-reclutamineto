@@ -11,5 +11,9 @@ class Survey extends Model
 
     protected $table = "surveys";
 
+    // protected $fillable = [
+    //     'question_type', 'survey_type', 'title', 'indications', 'created_at', 'updated_at',
+    //     'effective_date'
+    // ];
+    protected $guarded =[];
 }
-

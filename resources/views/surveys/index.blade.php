@@ -26,7 +26,14 @@
                     <td>{{ $surveys->title }}</td>
                     <td>{{ $surveys->created_at }}</td>
                     <td>{{ $surveys->effective_date }}</td>
-                    <td>{{ $surveys->survey_type }}</td>
+                    <td>
+                        @if ($surveys->survey_type === 'public')
+                            Público
+                        @elseif ($surveys->survey_type === 'anonymous')
+                            Anónimo
+                        @else
+                        @endif
+                    </td>
                     <td>{{ $surveys->estatus }}</td>
                     <td>
                         <a href="{{ route('survey.show', $surveys->id) }}">Ver</a>
@@ -38,4 +45,3 @@
     </table>
     {{ $survey->links() }}
 @endsection
-
