@@ -51,4 +51,11 @@ class surveyController extends Controller
         $survey->delete();
         return redirect()->route('survey.index');
     }
+
+    public function progreso()
+    {
+
+        return view('surveys.progreso');
+    }
+
 }
