@@ -4,16 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str; // Importa la clase Str
 
 class Survey extends Model
 {
     use HasFactory;
 
     protected $table = "surveys";
+    protected $guarded = [];
 
-    // protected $fillable = [
-    //     'question_type', 'survey_type', 'title', 'indications', 'created_at', 'updated_at',
-    //     'effective_date'
-    // ];
-    protected $guarded =[];
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($survey) {
+            $survey->slug = Str::slug($survey->title, '-');
+        });
+    }
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

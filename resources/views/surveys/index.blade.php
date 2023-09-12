@@ -36,8 +36,8 @@
                     </td>
                     <td>{{ $surveys->estatus }}</td>
                     <td>
-                        <a href="{{ route('survey.show', $surveys->id) }}">Ver</a>
-                        <a href="{{ route('survey.edit', $surveys->id) }}">Editar</a>
+                        <a href="{{ route('survey.show', $surveys) }}">Ver</a>
+                        <a href="{{ route('survey.edit', $surveys) }}">Editar</a>
                     </td>
                 </tr>
             @endforeach

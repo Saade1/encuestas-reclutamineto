@@ -26,9 +26,13 @@
             <td>{{$survey->created_at}}</td>
             <td>{{$survey->effective_date}}</td>
             <td>{{$survey->survey_type}}</td>
-            
+            <td>{{$survey->status}}</td>
         </tr>
     </tbody>
 </table>
-
+<form action="{{route('survey.destroy',$survey)}}" method="POST">
+    @csrf
+    @method('delete')
+    <button type="submit">Elimar encuesta</button>
+</form>
 @endsection

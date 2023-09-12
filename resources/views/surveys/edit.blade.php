@@ -13,12 +13,12 @@
             Tipo de pregunta:
             <select name="question_type" class="form-select" aria-label="Default select example">
                 <option value="" disabled selected>Selecciona una opción</option>
-                <option value="open" {{ old('question_type', $survey->question_type) === 'open' ? 'selected' : '' }}>
+                <option value="abierta" {{ old('question_type', $survey->question_type) === 'abierta' ? 'selected' : '' }}>
                     Abierta</option>
                 <option value="multiple_choice"
-                    {{ old('question_type', $survey->question_type) === 'multiple_choice' ? 'selected' : '' }}>Opción
+                    {{ old('opcion_multiple', $survey->question_type) === 'opcion_multiple' ? 'selected' : '' }}>Opción
                     múltiple</option>
-                <option value="list" {{ old('question_type', $survey->question_type) === 'list' ? 'selected' : '' }}>Lista
+                <option value="lista" {{ old('question_type', $survey->question_type) === 'lista' ? 'selected' : '' }}>Lista
                 </option>
                 <option value="combined"
                     {{ old('question_type', $survey->question_type) === 'combined' ? 'selected' : '' }}>
@@ -34,9 +34,9 @@
             Tipo de encuesta:
             <select name="survey_type" class="form-select" aria-label="Default select example">
                 <option value="" disabled selected>Selecciona una opción</option>
-                <option value="anonymous" {{ old('survey_type', $survey->survey_type) === 'anonymous' ? 'selected' : '' }}>
+                <option value="anonima" {{ old('survey_type', $survey->survey_type) === 'anonima' ? 'selected' : '' }}>
                     Anónimo</option>
-                <option value="public" {{ old('survey_type', $survey->survey_type) === 'public' ? 'selected' : '' }}>Público
+                <option value="publica" {{ old('survey_type', $survey->survey_type) === 'publica' ? 'selected' : '' }}>Público
                 </option>
             </select>
         </label>

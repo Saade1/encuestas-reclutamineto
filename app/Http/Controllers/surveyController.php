@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Survey;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use App\Http\Requests\SurveysSurvey;
 
 class surveyController extends Controller
@@ -20,7 +20,7 @@ class surveyController extends Controller
         return view('surveys.create');
     }
 
-    public function surveys(SurveysSurvey $request)
+    public function store(SurveysSurvey $request)
     {
         $survey = Survey::create($request->all());
 
@@ -45,5 +45,10 @@ class surveyController extends Controller
         $survey->update($request->all());
 
         return redirect()->route('survey.index', $survey);
+    }
+
+    public function destroy(Survey $survey){
+        $survey->delete();
+        return redirect()->route('survey.index');
     }
 }

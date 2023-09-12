@@ -10,13 +10,16 @@ return new class  extends Migration
     {
         Schema::create('surveys', function (Blueprint $table) {
             $table->id();
-            $table->enum('question_type', ['open', 'multiple_choice', 'list', 'combined']);
-            $table->enum('survey_type', ['public', 'anonymous']);
+            $table->enum('question_type', ['abierta', 'opcion_multiple', 'lista', 'combinada']);
+            $table->enum('survey_type', ['publica', 'anonima']);
+            $table->enum('status', ['editando', 'en_proceso', 'terminada']);
             $table->string('title')->nullable();
             $table->text('indications')->nullable();
+            $table->string('slug');
             $table->timestamps();
             $table->dateTime('effective_date')->nullable();
-        });
+            
+        });        
 
         Schema::create('survey_responses', function (Blueprint $table) {
             $table->id();
