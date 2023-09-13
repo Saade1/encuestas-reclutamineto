@@ -77,7 +77,7 @@
                 <input type="submit" class="botones" value="guardar">
                 {{-- <input type="submit" class="botones" name="agregar" id="eliminar_encuesta" value="cancelar">
                 <input type="submit" class="botones" name="agregar" id="enviar_encuesta" value="enviar encuesta"> --}}
-                <input type="submit" class="botones" name="agregar" id="agregar_encuesta" value="Regresar a encuestas"
+                <input type="submit" class="botones" value="Regresar a encuestas"
                     onclick=" location.href='{{ route('survey.index') }}'">
             </div>
         </div>
