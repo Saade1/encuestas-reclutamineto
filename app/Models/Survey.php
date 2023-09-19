@@ -10,19 +10,14 @@ class Survey extends Model
 {
     use HasFactory;
 
-    protected $table = "surveys";
-    protected $guarded = [];
+    protected $fillable = [
+        'id_form',
+        'question', // Agrega 'question' al array $fillable
+        'answer',
+    ];
 
-    protected static function boot()
+    public function form()
     {
-        parent::boot();
-
-        static::saving(function ($survey) {
-            $survey->slug = Str::slug($survey->title, '-');
-        });
-    }
-    public function getRouteKeyName()
-    {
-        return 'slug';
+        return $this->belongsTo(Form::class, 'id_form');
     }
 }
