@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>encuestas</title>
+    <title>ENCUESTAS</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -20,7 +20,7 @@
     </div>
     <div class="grafica">
         <div> <input type="submit" class="custom-select3" name="agregar" id="agregar_encuesta"
-                value="crear una encuensta" onclick=" location.href='{{ route('survey.create', $survey) }}'"></div>
+                value="CREAR UNA ENCUESTA" onclick=" location.href='{{ route('survey.create', $survey) }}'"></div>
         <div class="table-responsive">
             <table class="table-custom">
                 <thead class="table-light">
@@ -51,7 +51,7 @@
                                     @csrf
                                     <button type="submit" class="btn btn-primary">Editar</button>
                                 </form>
-                                
+
                             </td>
                             <td>
                                 <form action="{{ route('survey.destroy', $surveys) }}" method="POST">

@@ -35,8 +35,8 @@
                         <option value="lista"
                             {{ old('question_type', $survey->question_type) === 'lista' ? 'selected' : '' }}>Lista
                         </option>
-                        <option value="combined"
-                            {{ old('question_type', $survey->question_type) === 'combined' ? 'selected' : '' }}>
+                        <option value="combinada"
+                            {{ old('question_type', $survey->question_type) === 'combinada' ? 'selected' : '' }}>
                             Combinada</option>
                     </select>
                 </div>
@@ -83,7 +83,7 @@
 
                 <div>
                     <input type="submit" class="botones" value="Guardar">
-                    <input type="submit" class="botones" value="Regresar a encuestas"
+                    <input type="button" class="botones" value="Regresar a encuestas"
                         onclick=" location.href='{{ route('survey.index') }}'">
                 </div>
             </div>

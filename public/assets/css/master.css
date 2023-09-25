@@ -1,4 +1,3 @@
-
 .custom-select {
     background-color: #AFF4C6; /* Cambiar el color de fondo */
     height: 30px;
@@ -255,7 +254,7 @@ margin-top: 50px;
     margin-bottom: 2%;
     margin-left: 2.9%;
     }
-.input-container_pregunta {
+.input-container_question {
         display: flex;
         align-items: center;
         margin-bottom: 2%;
