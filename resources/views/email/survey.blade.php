@@ -9,6 +9,10 @@
 <body>
     <h1>Correo electrónico</h1>
     <p>Prueba de correos</p>
+    <p><strong>Nombre</strong>{{$data['name']}}</p>
+    <p><strong>Nombre</strong>{{$data['email']}}</p>
+
+
 </body>
 </html>
     

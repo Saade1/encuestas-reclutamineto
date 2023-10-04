@@ -10,11 +10,12 @@ return new class extends Migration
     {
         Schema::create('surveys', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_form')->nullable(); // Agrega la columna id_form, llave foranea
+            $table->unsignedBigInteger('id_form'); // Agrega la columna id_form, llave foranea
             $table->string('question')->nullable();
             $table->timestamps();
 
-            $table->foreign('id_form')->references('id')->on('form')->onDelete('cascade');
+            $table->foreign('id_form')->references('id')->on('form')->onDelete('cascade')
+            ->onUpdate('cascade');
         });
     }
 

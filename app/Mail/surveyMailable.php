@@ -3,8 +3,8 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -13,29 +13,32 @@ class surveyMailable extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subject = "informacion de prueba";
+    public $data;
 
-    /**
-     * Create a new message instance.
-     */
-    public function __construct()
+    // public $subject = "informacion de prueba";
+
+
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
-    /**
-     * Get the message content definition.
-     */
-    public function build()
+
+    public function envelope(): Envelope
     {
-        return $this->view('email.survey');
+        return new Envelope(
+            // from: new Address('saade@gmail.com', 'Saade'),
+            subject: 'cuestionario',
+        );
     }
 
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
-     */
+    public function content(): Content
+    {
+        return new Content(
+            view: 'email.survey',
+        );
+    }
+
     public function attachments(): array
     {
         return [];

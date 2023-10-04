@@ -25,18 +25,18 @@
                     <h1>Tipo de preguntas</h1>
                     <select name="question_type" class="form-select" aria-label="Default select example">
                         <option value="" disabled selected>Selecciona una opción</option>
-                        <option value="abierta"
-                            {{ old('question_type', $survey->question_type) === 'abierta' ? 'selected' : '' }}>
+                        <option value="1"
+                            {{ old('question_type', $survey->question_type) == '1' ? 'selected' : '' }}>
                             Abierta</option>
-                        <option value="opcion_multiple"
-                            {{ old('opcion_multiple', $survey->question_type) === 'opcion_multiple' ? 'selected' : '' }}>
+                        <option value="2"
+                            {{ old('question_type', $survey->question_type) == '2' ? 'selected' : '' }}>
                             Opción
                             múltiple</option>
-                        <option value="lista"
-                            {{ old('question_type', $survey->question_type) === 'lista' ? 'selected' : '' }}>Lista
+                        <option value="3"
+                            {{ old('question_type', $survey->question_type) == '3' ? 'selected' : '' }}>Lista
                         </option>
-                        <option value="combinada"
-                            {{ old('question_type', $survey->question_type) === 'combinada' ? 'selected' : '' }}>
+                        <option value="4"
+                            {{ old('question_type', $survey->question_type) == '4' ? 'selected' : '' }}>
                             Combinada</option>
                     </select>
                 </div>
@@ -44,11 +44,9 @@
                     <h1>Tipo de encuesta</h1>
                     <select name="survey_type" class="form-select" aria-label="Default select example">
                         <option value="" disabled selected>Selecciona una opción</option>
-                        <option value="anonima"
-                            {{ old('survey_type', $survey->survey_type) === 'anonima' ? 'selected' : '' }}>
+                        <option value="1" {{ old('survey_type', $survey->survey_type) == '1' ? 'selected' : '' }}>
                             Anónimo</option>
-                        <option value="publica"
-                            {{ old('survey_type', $survey->survey_type) === 'publica' ? 'selected' : '' }}>
+                        <option value="2" {{ old('survey_type', $survey->survey_type) == '2' ? 'selected' : '' }}>
                             Público
                         </option>
                     </select>

@@ -1,8 +1,7 @@
 <?php
 
-// use Illuminate\Routing\Route as RoutingRoute;
+use App\Http\Controllers\EmailController;
 use Illuminate\Support\Facades\Route;
-// use App\Http\Controllers\Homecontroller;
 use App\Http\Controllers\surveyController;
 use App\Mail\surveyMailable;
 use Illuminate\Support\Facades\Mail;
@@ -41,9 +40,13 @@ Route::get('encuestas/progresos/encuestas', [surveyController::class, 'progreso'
 
 
 //mandar encuesta a los usuarios
-Route::get('send', function () {
-    $email = new surveyMailable;
-    Mail::to('diosdelaguerra.satm@gmail.com')->send($email);
+// Route::get('send', function () {
+   
+//     Mail::to('diosdelaguerra.satm@gmail.com')->send(new surveyMailable);
 
-    return "Encuesta enviada";
-})->name('survey.send');
+//     return "Encuesta enviada";
+// })->name('survey.send');
+
+Route::get('responder',[EmailController::class, 'index'])->name('responder.index');
+
+Route::post('responder',[EmailController::class, 'store'])->name('responder.store');

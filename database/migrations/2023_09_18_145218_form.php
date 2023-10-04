@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('form', function (Blueprint $table) {
             $table->id();
-            $table->enum('question_type', ['abierta', 'opcion_multiple', 'lista', 'combinada']);
-            $table->enum('survey_type', ['publica', 'anonima']);
+            $table->unsignedBigInteger('question_type')->nullable(); 
+            $table->unsignedBigInteger('survey_type')->nullable(); 
             $table->enum('status', ['editando', 'en_proceso', 'terminada']);
             $table->string('title')->nullable();
             $table->text('indications')->nullable();

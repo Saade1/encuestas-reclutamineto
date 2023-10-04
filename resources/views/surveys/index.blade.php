@@ -44,7 +44,18 @@
                             <td>{{ $surveys->created_at }}</td>
                             <td>{{ $surveys->updated_at }}</td>
                             <td>{{ $surveys->effective_date }}</td>
-                            <td>{{ $surveys->survey_type }}</td>
+                            <td>
+                                @if ($surveys->question_type == 1)
+                                    Abierta
+                                @elseif ($surveys->question_type == 2)
+                                    Opción Múltiple
+                                @elseif ($surveys->question_type == 3)
+                                    Lista
+                                @elseif ($surveys->question_type == 4)
+                                    Combinada
+                                @endif
+                            </td>
+
                             <td>{{ $surveys->status }}</td>
                             <td>
                                 <form action="{{ route('survey.edit', $surveys) }}" method="GET">

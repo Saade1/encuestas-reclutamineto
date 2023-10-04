@@ -71,18 +71,52 @@
                     value="{{ old('indications') }}" required>
             </div>
             <div>
-                {{-- Agregar preguntas  --}}
-                <div id="preguntas-container" style="display: none;">
-                    <h1>Preguntas</h1>
+                {{-- Agregar preguntas abiertas --}}
+                <div id="open-container" style="display: none;">
+                    <h1>Preguntas abiertas</h1>
                     <div id="question-container">
                         <div class="input-container_question">
                             <label for="lbl_titulo" class="titulo_label"><b>PREGUNTA:</b></label>
                             <input type="text" name="questions[]" class="titulo_input">
+                            <input type="hidden" name="answers[]" class="titulo_input" value="">
                             <input type="button" class="agregarP" value="+" onclick="agregarPregunta(this)">
                         </div>
                     </div>
                 </div>
-                {{-- fin de preguntas --}}
+
+                <!-- Agregar preguntas de opción múltiple -->
+                <div id="multiple-choice-container" style="display: none;">
+                    <h1>Preguntas de opción múltiple</h1>
+                    <div class="input-container_question">
+                        <label for="lbl_titulo" class="titulo_label"><b>PREGUNTA:</b></label>
+                        <input type="text" name="questions[]" class="titulo_input">
+                        <input type="hidden" name="answers[]" class="titulo_input" value="">
+                        <input type="button" class="agregarP" value="+" onclick="agregarPregunta(this)">
+                    </div>
+                </div>
+
+                <!-- Agregar preguntas en lista -->
+                <div id="list-container" style="display: none;">
+                    <h1>Preguntas en lista</h1>
+                    <div class="input-container_question">
+                        <label for="lbl_titulo" class="titulo_label"><b>PREGUNTA:</b></label>
+                        <input type="text" name="questions[]" class="titulo_input">
+                        <input type="hidden" name="answers[]" class="titulo_input" value="">
+                        <input type="button" class="agregarP" value="+" onclick="agregarPregunta(this)">
+                    </div>
+                </div>
+
+                <!-- Agregar preguntas combinadas -->
+                <div id="combined-container" style="display: none;">
+                    <h1>Preguntas en combinadas</h1>
+                    <div class="input-container_question">
+                        <label for="lbl_titulo" class="titulo_label"><b>PREGUNTA:</b></label>
+                        <input type="text" name="questions[]" class="titulo_input">
+                        <input type="hidden" name="answers[]" class="titulo_input" value="">
+                        <input type="button" class="agregarP" value="+" onclick="agregarPregunta(this)">
+                    </div>
+                </div>
+
 
                 <div>
                     <input type="submit" class="botones" value="Guardar">
@@ -101,12 +135,29 @@
         </script>
 
         <script>
+            //funciones para cambiar dependiendo de la pregunta 
             function toggleQuestions(selectElement) {
-                var preguntaContainer = document.getElementById('preguntas-container');
-                if (selectElement.value !== "") {
-                    preguntaContainer.style.display = "block";
-                } else {
-                    preguntaContainer.style.display = "none";
+                var openContainer = document.getElementById('open-container');
+                var multipleChoiceContainer = document.getElementById('multiple-choice-container');
+                var listContainer = document.getElementById('list-container');
+                var combinedContainer = document.getElementById('combined-container');
+                var questionType = selectElement.value;
+
+                // Oculta todos los contenedores de preguntas
+                openContainer.style.display = 'none';
+                multipleChoiceContainer.style.display = 'none';
+                listContainer.style.display = 'none';
+                combinedContainer.style.display = 'none';
+
+                // Muestra el contenedor de preguntas correspondiente al tipo seleccionado
+                if (questionType === '1') {
+                    openContainer.style.display = 'block';
+                } else if (questionType === '2') {
+                    multipleChoiceContainer.style.display = 'block';
+                } else if (questionType === '3') {
+                    listContainer.style.display = 'block';
+                } else if (questionType === '4') {
+                    combinedContainer.style.display = 'block';
                 }
             }
 
