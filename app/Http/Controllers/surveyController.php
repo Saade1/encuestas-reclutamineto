@@ -20,31 +20,41 @@ class SurveyController extends Controller
     }
 
     public function store(SurveysSurvey $request)
-    {
-        // Crea el formulario
-        $form = Form::create($request->only([
-            'question_type',
-            'survey_type',
-            'status',
-            'title',
-            'indications',
-            'effective_date',
-        ]));
+{
+    // dd($request->all());
+    // Crea el formulario
+    $form = Form::create($request->only([
+        'question_type',
+        'survey_type',
+        'status',
+        'title',
+        'indications',
+        'effective_date',
+    ]));
 
-        // Obtiene las preguntas y respuestas del formulario
-        $questions = $request->input('questions', []);
+    // Obtiene las preguntas y respuestas del formulario
+    $questions = $request->input('questions', []);
+    $answers = $request->input('answers', []); // Asegúrate de que los nombres de los campos coincidan con los del formulario
 
-        // Asocia cada pregunta y respuesta al formulario, solo si la pregunta no está vacía
-        foreach ($questions as $key => $question) {
-            if (!empty($question)) {
-                $form->surveys()->create([
-                    'question' => $question,
+    // Asocia cada pregunta y respuesta al formulario
+    foreach ($questions as $key => $question) {
+        $newQuestion = $form->surveys()->create([
+            'question' => $question,
+        ]);
+
+        // Asocia respuestas con la pregunta
+        if (isset($answers[$key])) {
+            foreach ($answers[$key] as $answerText) {
+                $newQuestion->responses()->create([
+                    'answer' => $answerText,
                 ]);
             }
         }
-
-        return redirect()->route('survey.index', $form);
     }
+
+    return redirect()->route('survey.index')->with('success', 'Encuesta creada correctamente');
+}
+
 
     public function show(Form $survey)
     {
@@ -72,17 +82,17 @@ class SurveyController extends Controller
 
         // Obtiene las preguntas y respuestas del formulario desde la solicitud
         $questions = $request->input('questions', []);
+        // $answers = $request->input('answers', []);
 
         // Borra todas las preguntas existentes relacionadas con el formulario
         $survey->surveys()->delete();
 
-        // Crea y asocia las nuevas preguntas y respuestas al formulario, solo si la pregunta no está vacía
+        // Crea y asocia las nuevas preguntas y respuestas al formulario
         foreach ($questions as $key => $question) {
-            if (!empty($question)) {
-                $survey->surveys()->create([
-                    'question' => $question,
-                ]);
-            }
+            $survey->surveys()->create([
+                'question' => $question,
+                // 'answer' => $answers[$key],
+            ]);
         }
 
         return redirect()->route('survey.index', $survey);

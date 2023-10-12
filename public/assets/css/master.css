@@ -22,7 +22,7 @@
     
     
 }
-.agregarP {
+.add_Question {
     background-color: #AFF4C6; /* Cambiar el color de fondo */
     height: 30px;
     width: 30px;
@@ -33,6 +33,25 @@
     
     
 }
+
+.add_Answer {
+    background-color: #333; /* Cambiar el color de fondo */
+    height: 30px;
+    width: 30px;
+    margin: 24px;
+    display: inline-block;
+    vertical-align: top; 
+    border: none;
+}
+
+.question {
+    margin-bottom: 10px;
+  }
+  .answer {
+    margin-left: 20px;
+    margin-bottom: 10px;
+  }
+
 /* Estilo para el label */
 .titulo_label {
     font-size: 15px; /* Cambia el tamaño de fuente según tus preferencias */

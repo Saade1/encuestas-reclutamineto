@@ -14,6 +14,7 @@
 </head>
 
 <body>
+    {{-- Inicio de formulario --}}
     <div class="centrar-h1">
         <h1>FORMULARIO PARA CREAR ENCUESTA</h1>
     </div>
@@ -72,17 +73,38 @@
             </div>
             <div>
                 {{-- Agregar preguntas  --}}
-                <div id="preguntas-container" style="display: none;">
+                <div id="question-container-main">
                     <h1>Preguntas</h1>
-                    <div id="question-container">
-                        <div class="input-container_question">
-                            <label for="lbl_titulo" class="titulo_label"><b>PREGUNTA:</b></label>
-                            <input type="text" name="questions[]" class="titulo_input">
-                            <input type="button" class="agregarP" value="+" onclick="agregarPregunta(this)">
+                    <div class="input-container_question">
+                        <label for="lbl_titulo" class="titulo_label"><b>PREGUNTA:</b></label>
+                        <input type="text" name="questions[0]" class="titulo_input">
+                        <input type="button" class="add_Question" value="+" onclick="addQuestion(this)">
+                        <div class="answer-container-main">
+                            <div class="answer-container">
+                                <div class="input-container_answers">
+                                    <label for="lbl_titulo" class="titulo_label"><b>RESPUESTA:</b></label>
+                                    <input type="text" name="answers[0][]" class="titulo_input">
+                                    <input type="button" class="add_Answer" value="+"
+                                        onclick="addAnswer(this)">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                {{-- fin de preguntas --}}
+                
+                {{-- fin de repuetas --}}
+
+                {{-- Respuestas  --}}
+                {{-- <div id="answer-container-main" style="display: none;">
+                    <div id="answer-container">
+                        <div class="input-container_answers">
+                            <label for="lbl_titulo" class="titulo_label"><b>RESPUESTA:</b></label>
+                            <input type="text" name="answers[]" class="titulo_input">
+                            <input type="button" class="add_Answer" value="+" onclick="addAnswer(this)">
+                        </div>
+                    </div>
+                </div> --}}
+                {{-- Fin de respuestas --}}
 
                 <div>
                     <input type="submit" class="botones" value="Guardar">
@@ -91,6 +113,7 @@
                 </div>
             </div>
         </form>
+        {{-- Fin de formualrio --}}
 
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
             integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
@@ -99,55 +122,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
             integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
         </script>
+        <script src="{{ asset('assets/js/create.js') }}"></script>
 
-        <script>
-            function toggleQuestions(selectElement) {
-                var preguntaContainer = document.getElementById('preguntas-container');
-                if (selectElement.value !== "") {
-                    preguntaContainer.style.display = "block";
-                } else {
-                    preguntaContainer.style.display = "none";
-                }
-            }
-
-            function agregarPregunta(btn) {
-                // Clona el div que contiene los campos de pregunta y respuesta y el botón de agregar
-                var preguntaDiv = btn.parentElement;
-                var nuevaPreguntaDiv = preguntaDiv.cloneNode(true);
-
-                // Limpia los campos de texto clonados
-                var camposPregunta = nuevaPreguntaDiv.querySelectorAll('input[name="questions[]"]');
-                var camposRespuesta = nuevaPreguntaDiv.querySelectorAll('input[name="answers[]"]');
-                camposPregunta.forEach(function(campo) {
-                    campo.value = '';
-                });
-                camposRespuesta.forEach(function(campo) {
-                    campo.value = '';
-                });
-
-                // Remueve el botón anterior
-                preguntaDiv.removeChild(btn);
-
-                // Agrega los campos de pregunta, respuesta y un nuevo botón clonado al contenedor de preguntas
-                document.getElementById('question-container').appendChild(nuevaPreguntaDiv);
-            }
-
-            function agregarOpcionRespuesta(btn) {
-                // Clona el div que contiene el campo de opción de respuesta
-                var opcionDiv = btn.parentElement;
-                var nuevaOpcionDiv = opcionDiv.cloneNode(true);
-
-                // Limpia el campo de texto clonado
-                var campoRespuesta = nuevaOpcionDiv.querySelector('input[name="answers[][options][]"]');
-                campoRespuesta.value = '';
-
-                // Remueve el botón anterior
-                opcionDiv.removeChild(btn);
-
-                // Agrega el campo de opción de respuesta y un nuevo botón clonado al contenedor de opciones de respuesta
-                opcionDiv.appendChild(nuevaOpcionDiv);
-            }
-        </script>
 
 </body>
 

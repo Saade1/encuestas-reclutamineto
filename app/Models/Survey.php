@@ -11,8 +11,7 @@ class Survey extends Model
 
     protected $fillable = [
         'id_form',
-        'question', // Agrega 'question' al array $fillable
-        
+        'question',
     ];
 
     public function form()
@@ -22,6 +21,7 @@ class Survey extends Model
 
     public function responses()
     {
-        return $this->hasMany(SurveyResponse::class, 'id_survey');
+        return $this->hasMany(SurveyResponses::class, 'id_survey');
     }
+    
 }
