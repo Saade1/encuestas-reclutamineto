@@ -1,11 +1,13 @@
 function toggleQuestions(selectElement) {
     var questionContainer = document.getElementById("question-container-main");
-    var answerContainer = document.getElementById("answer-container-main");
+    var answerContainer = questionContainer.querySelector(
+        ".answer-container-main"
+    );
 
     if (selectElement.value !== "") {
         questionContainer.style.display = "block";
         if (selectElement.value !== "1") {
-            // Ocultar el contenedor de respuestas si no es pregunta abierta
+            // Mostrar el contenedor de respuestas si no es pregunta abierta
             answerContainer.style.display = "block";
         } else {
             answerContainer.style.display = "none";
@@ -24,15 +26,19 @@ function addQuestion(btn) {
     let newQuestionDiv = questionDiv.cloneNode(true);
 
     // Limpia los campos de texto clonados y actualiza los nombres de los campos
-    let camposPregunta = newQuestionDiv.querySelectorAll('input[name^="questions"]');
-    let camposRespuesta = newQuestionDiv.querySelectorAll('input[name^="answers"]');
+    let questions_Fields = newQuestionDiv.querySelectorAll(
+        'input[name^="questions"]'
+    );
+    let responses_Fields = newQuestionDiv.querySelectorAll(
+        'input[name^="answers"]'
+    );
 
-    camposPregunta.forEach(function (campo) {
+    questions_Fields.forEach(function (campo) {
         campo.value = "";
         campo.name = `questions[${questionCounter}]`;
     });
 
-    camposRespuesta.forEach(function (campo) {
+    responses_Fields.forEach(function (campo) {
         campo.value = "";
         campo.name = `answers[${questionCounter}][]`;
     });
@@ -41,25 +47,31 @@ function addQuestion(btn) {
     questionCounter++;
 
     // Agrega los campos de pregunta, respuesta y un nuevo botón clonado al contenedor de preguntas
-    document.getElementById("question-container-main").appendChild(newQuestionDiv);
+    document
+        .getElementById("question-container-main")
+        .appendChild(newQuestionDiv);
 }
 
 function addAnswer(btn) {
     // Encuentra el div padre que contiene la pregunta actual
-    let questionDiv = btn.closest('.input-container_question');
+    let questionDiv = btn.closest(".input-container_question");
 
     // Encuentra el número de la pregunta actual
-    let questionNumber = Array.from(document.querySelectorAll('.input-container_question')).indexOf(questionDiv);
+    let questionNumber = Array.from(
+        document.querySelectorAll(".input-container_question")
+    ).indexOf(questionDiv);
 
     // Clona el div que contiene el campo de respuesta
     let answerDiv = btn.parentElement;
     let newAnswerDiv = answerDiv.cloneNode(true);
 
     // Limpia el campo de texto clonado y actualiza el nombre del campo
-    let campoRespuesta = newAnswerDiv.querySelector('input[name^="answers"]');
-    campoRespuesta.value = "";
-    campoRespuesta.name = `answers[${questionNumber}][]`;
+    let responses_Field = newAnswerDiv.querySelector('input[name^="answers"]');
+    responses_Field.value = "";
+    responses_Field.name = `answers[${questionNumber}][]`;
 
     // Agrega el campo de respuesta y un nuevo botón clonado al contenedor de respuestas
-    questionDiv.querySelector('.answer-container-main').appendChild(newAnswerDiv);
+    questionDiv
+        .querySelector(".answer-container-main")
+        .appendChild(newAnswerDiv);
 }

@@ -73,13 +73,14 @@
             </div>
             <div>
                 {{-- Agregar preguntas  --}}
-                <div id="question-container-main">
+                
+                <div id="question-container-main" style="display: none;">
                     <h1>Preguntas</h1>
                     <div class="input-container_question">
                         <label for="lbl_titulo" class="titulo_label"><b>PREGUNTA:</b></label>
                         <input type="text" name="questions[0]" class="titulo_input">
                         <input type="button" class="add_Question" value="+" onclick="addQuestion(this)">
-                        <div class="answer-container-main">
+                        <div class="answer-container-main" style="display: none;">
                             <div class="answer-container">
                                 <div class="input-container_answers">
                                     <label for="lbl_titulo" class="titulo_label"><b>RESPUESTA:</b></label>

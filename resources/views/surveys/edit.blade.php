@@ -69,15 +69,28 @@
                     id="txt_ti" class="titulo_input" required>
             </div>
             <div>
+                {{-- preguntas y respuetas  --}}
                 @foreach ($survey->surveys as $index => $surveyItem)
                     <div class="input-container_pregunta">
-                        <label for="lbl_titulo" class="titulo_label"><b>PREGUNTA:</b></label>
-                        <input type="text" name="questions[]" class="titulo_input"
+                        <label for="lbl_titulo" class="titulo_label"><b>PREGUNTA {{ $index + 1 }}:</b></label>
+                        <input type="text" name="questions[{{ $index }}]" class="titulo_input"
                             value="{{ $surveyItem->question }}" required>
-                        <label for="lbl_titulo" class="titulo_label"><b>RESPUESTA:</b></label>
-                        <input type="text" name="answers[]" class="titulo_input" value="{{ $surveyItem->answer }}">
+
+                        <div class="input-container_respuestas">
+                            <div class="respuesta-texto">Respuestas:</div>
+                            @php $responses = isset($surveyItem->responses) ? $surveyItem->responses : []; @endphp
+                            @for ($i = 0; $i < count($responses); $i += 2)
+                                <div class="grupo-respuestas">
+                                    @for ($j = $i; $j < $i + 2 && $j < count($responses); $j++)
+                                        <input type="text" name="answers[{{ $index }}][]"
+                                            class="titulo_input" value="{{ $responses[$j]->answer }}">
+                                    @endfor
+                                </div>
+                            @endfor
+                        </div>
                     </div>
                 @endforeach
+                {{-- Preguntas y respuetas --}}
 
                 <div>
                     <input type="submit" class="botones" value="Guardar">
@@ -92,38 +105,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
             integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
         </script>
-        <script>
-            function agregarPregunta(btn) {
-                // Clona el div que contiene los campos de pregunta y respuesta y el botón de agregar
-                var preguntaDiv = btn.parentElement;
-                var nuevaPreguntaDiv = preguntaDiv.cloneNode(true);
-
-                // Limpia los campos de texto clonados
-                var camposPregunta = nuevaPreguntaDiv.querySelectorAll('input[name="questions[]"]');
-                var camposRespuesta = nuevaPreguntaDiv.querySelectorAll('input[name="answers[]"]');
-                camposPregunta.forEach(function(campo) {
-                    campo.value = '';
-                });
-                camposRespuesta.forEach(function(campo) {
-                    campo.value = '';
-                });
-
-                // Remueve el botón anterior
-                preguntaDiv.removeChild(btn);
-
-                // Agrega los campos de pregunta, respuesta y un nuevo botón clonado al contenedor de preguntas
-                document.getElementById('preguntas-container').appendChild(nuevaPreguntaDiv);
-            }
-
-            function eliminarPregunta(btn) {
-                // Encuentra el div que contiene la pregunta y respuesta actual
-                var preguntaDiv = btn.parentElement;
-
-                // Encuentra el contenedor de preguntas y elimina el div actual
-                var preguntasContainer = document.getElementById('preguntas-container');
-                preguntasContainer.removeChild(preguntaDiv);
-            }
-        </script>
+        <script src="{{ asset('assets/js/edit.js') }}"></script>
 </body>
 
 </html>

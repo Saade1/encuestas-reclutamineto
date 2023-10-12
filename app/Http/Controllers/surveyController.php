@@ -69,34 +69,42 @@ class SurveyController extends Controller
     }
 
     public function update(SurveysSurvey $request, Form $survey)
-    {
-        // Actualiza los detalles generales del formulario
-        $survey->update($request->only([
-            'question_type',
-            'survey_type',
-            'status',
-            'title',
-            'indications',
-            'effective_date',
-        ]));
+{
+    // Actualiza los detalles generales del formulario
+    $survey->update($request->only([
+        'question_type',
+        'survey_type',
+        'status',
+        'title',
+        'indications',
+        'effective_date',
+    ]));
 
-        // Obtiene las preguntas y respuestas del formulario desde la solicitud
-        $questions = $request->input('questions', []);
-        // $answers = $request->input('answers', []);
+    // Borra todas las preguntas existentes relacionadas con el formulario
+    $survey->surveys()->delete();
 
-        // Borra todas las preguntas existentes relacionadas con el formulario
-        $survey->surveys()->delete();
+    // Obtiene las preguntas y respuestas del formulario desde la solicitud
+    $questions = $request->input('questions', []);
+    $answers = $request->input('answers', []);
 
-        // Crea y asocia las nuevas preguntas y respuestas al formulario
-        foreach ($questions as $key => $question) {
-            $survey->surveys()->create([
-                'question' => $question,
-                // 'answer' => $answers[$key],
-            ]);
+    // Asocia las nuevas preguntas y respuestas al formulario
+    foreach ($questions as $key => $question) {
+        $newQuestion = $survey->surveys()->create([
+            'question' => $question,
+        ]);
+
+        // Asocia respuestas con la pregunta
+        if (isset($answers[$key])) {
+            foreach ($answers[$key] as $answerText) {
+                $newQuestion->responses()->create([
+                    'answer' => $answerText,
+                ]);
+            }
         }
-
-        return redirect()->route('survey.index', $survey);
     }
+
+    return redirect()->route('survey.index')->with('success', 'Encuesta actualizada correctamente');
+}
 
     public function destroy(Form $survey)
     {
