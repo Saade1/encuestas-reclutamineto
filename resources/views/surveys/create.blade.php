@@ -72,8 +72,9 @@
                     value="{{ old('indications') }}" required>
             </div>
             <div>
-                {{-- Agregar preguntas  --}}
                 
+                {{-- Agregar preguntas  --}}
+
                 <div id="question-container-main" style="display: none;">
                     <h1>Preguntas</h1>
                     <div class="input-container_question">
@@ -85,27 +86,14 @@
                                 <div class="input-container_answers">
                                     <label for="lbl_titulo" class="titulo_label"><b>RESPUESTA:</b></label>
                                     <input type="text" name="answers[0][]" class="titulo_input">
-                                    <input type="button" class="add_Answer" value="+"
-                                        onclick="addAnswer(this)">
+                                    <input type="button" class="add_Answer" value="+" onclick="addAnswer(this)">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                {{-- fin de repuetas --}}
 
-                {{-- Respuestas  --}}
-                {{-- <div id="answer-container-main" style="display: none;">
-                    <div id="answer-container">
-                        <div class="input-container_answers">
-                            <label for="lbl_titulo" class="titulo_label"><b>RESPUESTA:</b></label>
-                            <input type="text" name="answers[]" class="titulo_input">
-                            <input type="button" class="add_Answer" value="+" onclick="addAnswer(this)">
-                        </div>
-                    </div>
-                </div> --}}
-                {{-- Fin de respuestas --}}
+                {{-- fin de repuetas --}}
 
                 <div>
                     <input type="submit" class="botones" value="Guardar">

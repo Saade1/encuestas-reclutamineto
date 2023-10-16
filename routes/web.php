@@ -35,8 +35,12 @@ Route::resource('encuestas', surveyController::class)
     ->parameters(['encuestas' => 'survey'])
     ->names('survey');
 
+    // Route::post('/encuestas/store', [surveyController::class, 'store'])->name('survey.store');
+
+    // Route::post('/encuestas/store', [surveyController::class, 'progreso']);
+
 //progreso
-Route::get('encuestas/progresos/encuestas', [surveyController::class, 'progreso'])->name('survey.progreso');
+Route::post('/encuestas/store', [surveyController::class, 'progreso'])->name('survey.progreso');
 
 
 //mandar encuesta a los usuarios

@@ -25,21 +25,28 @@ function addQuestion(btn) {
     let questionDiv = btn.parentElement;
     let newQuestionDiv = questionDiv.cloneNode(true);
 
-    // Limpia los campos de texto clonados y actualiza los nombres de los campos
+    // Limpia los campos de texto clonados y actualiza los nombres de los campos de pregunta
     let questions_Fields = newQuestionDiv.querySelectorAll(
         'input[name^="questions"]'
     );
-    let responses_Fields = newQuestionDiv.querySelectorAll(
-        'input[name^="answers"]'
-    );
-
     questions_Fields.forEach(function (campo) {
         campo.value = "";
         campo.name = `questions[${questionCounter}]`;
     });
 
-    responses_Fields.forEach(function (campo) {
-        campo.value = "";
+    // Encuentra el contenedor de respuestas de la pregunta actual y elimina los campos de respuesta adicionales
+    let answerContainer = newQuestionDiv.querySelector(
+        ".answer-container-main"
+    );
+    let responseFields = answerContainer.querySelectorAll(
+        'input[name^="answers"]'
+    );
+    responseFields.forEach(function (campo, index) {
+        if (index > 0) {
+            campo.parentElement.remove(); // Elimina campos de respuesta adicionales
+        } else {
+            campo.value = ""; // Limpia el primer campo de respuesta
+        }
         campo.name = `answers[${questionCounter}][]`;
     });
 
