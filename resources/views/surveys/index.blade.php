@@ -55,8 +55,15 @@
                                     Combinada
                                 @endif
                             </td>
-
-                            <td>{{ $surveys->status }}</td>
+                            <td>
+                                @if ($surveys->status == 1)
+                                    Editando
+                                @elseif ($surveys->status == 2)
+                                    En proceso
+                                @elseif ($surveys->status == 3)
+                                    Editada
+                                @endif
+                            </td>
                             <td>
                                 <form action="{{ route('survey.edit', $surveys) }}" method="GET">
                                     @csrf

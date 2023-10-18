@@ -25,6 +25,9 @@ function addQuestion(btn) {
     let questionDiv = btn.parentElement;
     let newQuestionDiv = questionDiv.cloneNode(true);
 
+    // Elimina el botón de pregunta del contenedor original
+    questionDiv.querySelector(".add_Question").remove();
+
     // Limpia los campos de texto clonados y actualiza los nombres de los campos de pregunta
     let questions_Fields = newQuestionDiv.querySelectorAll(
         'input[name^="questions"]'

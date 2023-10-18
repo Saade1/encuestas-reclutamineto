@@ -52,7 +52,7 @@ class SurveyController extends Controller
             }
         }
 
-        return redirect()->route('survey.index')->with('success', 'Encuesta creada correctamente');
+        return redirect()->route('survey.index');
     }
 
 

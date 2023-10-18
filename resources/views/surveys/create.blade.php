@@ -48,10 +48,10 @@
                     <h1>status</h1>
                     <select class="custom-select" name="status" aria-label=".form-select-lg example">
                         <option value="" disabled selected>Selecciona una opción</option>
-                        <option value="editando" {{ old('editando') == 'editando' ? 'selected' : '' }}>Editando</option>
-                        <option value="en_proceso" {{ old('en_proceso') == 'en_proceso' ? 'selected' : '' }}>En proceso
+                        <option value="1" {{ old('Editando') == '1' ? 'selected' : '' }}>Editando</option>
+                        <option value="2" {{ old('En proceso') == '2' ? 'selected' : '' }}>En proceso
                         </option>
-                        <option value="terminada" {{ old('terminada') == 'terminada' ? 'selected' : '' }}>Terminada
+                        <option value="3" {{ old('Terminada') == '3' ? 'selected' : '' }}>Terminada
                         </option>
                     </select>
                 </div>
@@ -72,7 +72,7 @@
                     value="{{ old('indications') }}" required>
             </div>
             <div>
-                
+
                 {{-- Agregar preguntas  --}}
 
                 <div id="question-container-main" style="display: none;">

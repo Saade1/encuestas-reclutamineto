@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('question_type')->nullable(); 
             $table->unsignedBigInteger('survey_type')->nullable(); 
-            $table->enum('status', ['editando', 'en_proceso', 'terminada']);
+            $table->unsignedBigInteger('status');
             $table->string('title')->nullable();
             $table->text('indications')->nullable();
             $table->string('slug');

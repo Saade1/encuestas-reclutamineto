@@ -86,7 +86,7 @@
                                             class="titulo_input" value="{{ $responses[$j]->answer }}">
                                     @endfor
                                 </div>
-                            @endfor
+                            @endfor 
                         </div>
                     </div>
                 @endforeach
