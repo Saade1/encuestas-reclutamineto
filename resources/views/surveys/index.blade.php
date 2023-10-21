@@ -41,9 +41,9 @@
                         <tr class="table-primary">
                             <td scope="row" class="first-column">{{ $surveys->id }}</td>
                             <td>{{ $surveys->title }}</td>
-                            <td>{{ $surveys->created_at }}</td>
-                            <td>{{ $surveys->updated_at }}</td>
-                            <td>{{ $surveys->effective_date }}</td>
+                            <td>@php echo date('d/m/Y H:i:s', strtotime($surveys->created_at)); @endphp</td>
+                            <td>@php echo date('d/m/Y H:i:s', strtotime($surveys->updated_at)); @endphp</td>
+                            <td>@php echo date('d/m/Y H:i:s', strtotime($surveys->effective_date)); @endphp</td>
                             <td>
                                 @if ($surveys->question_type == 1)
                                     Abierta

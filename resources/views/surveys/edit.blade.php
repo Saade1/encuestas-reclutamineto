@@ -53,26 +53,26 @@
                 </div>
             </div>
             <div class="input-container">
-                <label for="lbl_fn" class="titulo_label"><b>fecha de vigencia</b></label>
+                <label class="titulo_label"><b>fecha de vigencia</b></label>
                 <input type="datetime-local" class="titulo_input" name="effective_date"
                     value="{{ old('effective_date', $survey->effective_date) }}" id="txt_fn" placeholder="aaaa-mm-dd"
                     required>
             </div>
             <div class="input-container_titulo">
-                <label for="lbl_titulo" class="titulo_label"><b>TITULO:</b></label>
-                <input type="text" name="title" value="{{ old('title', $survey->title) }}" id="txt_ti"
-                    class="titulo_input" required>
+                <label class="titulo_label"><b>TITULO:</b></label>
+                <input type="text" name="title" value="{{ old('title', $survey->title) }}" class="titulo_input"
+                    required>
             </div>
             <div class="input-container_indicacion">
-                <label for="lbl_titulo" class="titulo_label"><b>INDICACION:</b></label>
+                <label class="titulo_label"><b>INDICACION:</b></label>
                 <input type="text" name="indications" value="{{ old('indications', $survey->indications) }}"
-                    id="txt_ti" class="titulo_input" required>
+                    class="titulo_input" required>
             </div>
             <div>
                 {{-- preguntas y respuetas  --}}
                 @foreach ($survey->surveys as $index => $surveyItem)
                     <div class="input-container_pregunta">
-                        <label for="lbl_titulo" class="titulo_label"><b>PREGUNTA {{ $index + 1 }}:</b></label>
+                        <label class="titulo_label"><b>PREGUNTA {{ $index + 1 }}:</b></label>
                         <input type="text" name="questions[{{ $index }}]" class="titulo_input"
                             value="{{ $surveyItem->question }}" required>
 
@@ -86,7 +86,7 @@
                                             class="titulo_input" value="{{ $responses[$j]->answer }}">
                                     @endfor
                                 </div>
-                            @endfor 
+                            @endfor
                         </div>
                     </div>
                 @endforeach

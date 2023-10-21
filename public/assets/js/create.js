@@ -60,6 +60,10 @@ function addQuestion(btn) {
     document
         .getElementById("question-container-main")
         .appendChild(newQuestionDiv);
+
+    // Muestra el botón "+" de respuestas para la pregunta actual
+    let answerButton = newQuestionDiv.querySelector(".add_Answer");
+    answerButton.style.display = "block";
 }
 
 function addAnswer(btn) {
@@ -80,8 +84,11 @@ function addAnswer(btn) {
     responses_Field.value = "";
     responses_Field.name = `answers[${questionNumber}][]`;
 
-    // Agrega el campo de respuesta y un nuevo botón clonado al contenedor de respuestas
+    // Agrega el campo de respuesta al contenedor de respuestas
     questionDiv
         .querySelector(".answer-container-main")
         .appendChild(newAnswerDiv);
+
+    // // Oculta el botón "+" de respuestas
+    btn.style.display = "none";
 }

@@ -3,18 +3,14 @@
 
 <head>
     <title>Crear Encuestas</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS v5.2.1 -->
     <link rel="stylesheet" href="{{ asset('assets/css/master.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 
 <body>
-    {{-- Inicio de formulario --}}
     <div class="centrar-h1">
         <h1>FORMULARIO PARA CREAR ENCUESTA</h1>
     </div>
@@ -57,63 +53,49 @@
                 </div>
             </div>
             <div class="input-container">
-                <label for="lbl_fn" class="titulo_label"><b>Fecha de vigencia</b></label>
+                <label class="titulo_label"><b>Fecha de vigencia</b></label>
                 <input type="datetime-local" class="titulo_input" name="effective_date"
                     value="{{ old('effective_date') }}" required>
             </div>
             <div class="input-container_titulo">
-                <label for="lbl_titulo" class="titulo_label"><b>TITULO:</b></label>
-                <input type="text" name="title" id="txt_ti" class="titulo_input" value="{{ old('title') }}"
-                    required>
+                <label class="titulo_label"><b>TITULO:</b></label>
+                <input type="text" name="title" class="titulo_input" value="{{ old('title') }}" required>
             </div>
             <div class="input-container_indicacion">
-                <label for="lbl_titulo" class="titulo_label"><b>INDICACION:</b></label>
-                <input type="text" name="indications" id="txt_ti" class="titulo_input"
-                    value="{{ old('indications') }}" required>
+                <label class="titulo_label"><b>INDICACION:</b></label>
+                <input type="text" name="indications" class="titulo_input" value="{{ old('indications') }}"
+                    required>
             </div>
-            <div>
-
-                {{-- Agregar preguntas  --}}
-
-                <div id="question-container-main" style="display: none;">
-                    <h1>Preguntas</h1>
-                    <div class="input-container_question">
-                        <label for="lbl_titulo" class="titulo_label"><b>PREGUNTA:</b></label>
-                        <input type="text" name="questions[0]" class="titulo_input">
-                        <input type="button" class="add_Question" value="+" onclick="addQuestion(this)">
-                        <div class="answer-container-main" style="display: none;">
-                            <div class="answer-container">
-                                <div class="input-container_answers">
-                                    <label for="lbl_titulo" class="titulo_label"><b>RESPUESTA:</b></label>
-                                    <input type="text" name="answers[0][]" class="titulo_input">
-                                    <input type="button" class="add_Answer" value="+" onclick="addAnswer(this)">
-                                </div>
+            <div id="question-container-main" style="display: none;">
+                <h1>Preguntas</h1>
+                <div class="input-container_question">
+                    <label class="titulo_label"><b>PREGUNTA:</b></label>
+                    <input type="text" name="questions[0]" class="titulo_input">
+                    <input type="button" class="add_Question" value="+" onclick="addQuestion(this)">
+                    <div class="answer-container-main" style="display: none;">
+                        <div class="answer-container">
+                            <div class="input-container_answers">
+                                <label class="titulo_label"><b>RESPUESTA:</b></label>
+                                <input type="text" name="answers[0][]" class="titulo_input">
+                                <input id="answer_Button" type="button" class="add_Answer" value="+"
+                                    onclick="addAnswer(this)">
                             </div>
                         </div>
                     </div>
                 </div>
-
-                {{-- fin de repuetas --}}
-
-                <div>
-                    <input type="submit" class="botones" value="Guardar">
-                    <input type="button" class="botones" value="Regresar a encuestas"
-                        onclick="location.href='{{ route('survey.index') }}'">
-                </div>
             </div>
+            <input type="submit" class="botones" value="Guardar">
+            <input type="button" class="botones" value="Regresar a encuestas"
+                onclick="location.href='{{ route('survey.index') }}'">
         </form>
-        {{-- Fin de formualrio --}}
-
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-        </script>
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-            integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-        </script>
-        <script src="{{ asset('assets/js/create.js') }}"></script>
-
-
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+    </script>
+    <script src="{{ asset('assets/js/create.js') }}"></script>
 </body>
 
 </html>
