@@ -45,11 +45,11 @@
                             <td>@php echo date('d/m/Y H:i:s', strtotime($surveys->updated_at)); @endphp</td>
                             <td>@php echo date('d/m/Y H:i:s', strtotime($surveys->effective_date)); @endphp</td>
                             <td>
-                                @if ($surveys->question_type == 1)
+                                @if ($surveys->form_type == 1)
                                     Abierta
-                                @elseif ($surveys->question_type == 2)
+                                @elseif ($surveys->form_type == 2)
                                     Opción Múltiple
-                                @elseif ($surveys->question_type == 3)
+                                @elseif ($surveys->form_type == 3)
                                     Lista
                                 @elseif ($surveys->question_type == 4)
                                     Combinada
@@ -61,7 +61,7 @@
                                 @elseif ($surveys->status == 2)
                                     En proceso
                                 @elseif ($surveys->status == 3)
-                                    Editada
+                                    Terminada
                                 @endif
                             </td>
                             <td>

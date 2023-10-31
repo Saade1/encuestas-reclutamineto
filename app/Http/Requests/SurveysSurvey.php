@@ -14,7 +14,7 @@ class SurveysSurvey extends FormRequest
     public function rules(): array
     {
         return [
-            'question_type' => 'required', 'survey_type' => 'required',
+            'form_type' => 'required', 'survey_type' => 'required',
             'title' => 'required', 'indications' => 'required', 'effective_date' => 'required'
         ];
     }

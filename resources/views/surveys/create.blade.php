@@ -20,15 +20,15 @@
             <div class="opcion">
                 <div>
                     <h1>Tipo de preguntas</h1>
-                    <select class="custom-select" name="question_type" aria-label=".form-select-lg example"
+                    <select class="custom-select" name="form_type" aria-label=".form-select-lg example"
                         onchange="toggleQuestions(this)">
                         <option value="" disabled selected>Selecciona una opción</option>
-                        <option value="1" {{ old('question_type') == '1' ? 'selected' : '' }}>Abierta
+                        <option value="1" {{ old('form_type') == '1' ? 'selected' : '' }}>Abierta
                         </option>
-                        <option value="2" {{ old('question_type') == '2' ? 'selected' : '' }}>
+                        <option value="2" {{ old('form_type') == '2' ? 'selected' : '' }}>
                             Opción múltiple</option>
-                        <option value="3" {{ old('question_type') == '3' ? 'selected' : '' }}>Lista</option>
-                        <option value="4" {{ old('question_type') == '4' ? 'selected' : '' }}>Combinada
+                        <option value="3" {{ old('form_type') == '3' ? 'selected' : '' }}>Lista</option>
+                        <option value="4" {{ old('form_type') == '4' ? 'selected' : '' }}>Combinada
                         </option>
                     </select>
                 </div>
@@ -40,7 +40,7 @@
                         <option value="2" {{ old('survey_type') == '2' ? 'selected' : '' }}>Público</option>
                     </select>
                 </div>
-                <div>
+                {{-- <div>
                     <h1>status</h1>
                     <select class="custom-select" name="status" aria-label=".form-select-lg example">
                         <option value="" disabled selected>Selecciona una opción</option>
@@ -50,7 +50,7 @@
                         <option value="3" {{ old('Terminada') == '3' ? 'selected' : '' }}>Terminada
                         </option>
                     </select>
-                </div>
+                </div> --}}
             </div>
             <div class="input-container">
                 <label class="titulo_label"><b>Fecha de vigencia</b></label>
@@ -72,6 +72,15 @@
                     <label class="titulo_label"><b>PREGUNTA:</b></label>
                     <input type="text" name="questions[0]" class="titulo_input">
                     <input type="button" class="add_Question" value="+" onclick="addQuestion(this)">
+                    <select class="custom-select" aria-label=".form-select-lg example" onchange="toggleQuestions(this)"
+                        style="display: none;">
+                        <option value="" disabled selected>Selecciona una opción</option>
+                        <option value="1" {{ old('') == '1' ? 'selected' : '' }}>Abierta
+                        </option>
+                        <option value="2" {{ old('') == '2' ? 'selected' : '' }}>
+                            Opción múltiple</option>
+                        <option value="3" {{ old('') == '3' ? 'selected' : '' }}>Lista</option>
+                    </select>
                     <div class="answer-container-main" style="display: none;">
                         <div class="answer-container">
                             <div class="input-container_answers">
@@ -85,10 +94,12 @@
                 </div>
             </div>
             <input type="submit" class="botones" value="Guardar">
+            {{-- <input type="button" class="botones" id="cancelButton" value="Cancelar"> --}}
             <input type="button" class="botones" value="Regresar a encuestas"
                 onclick="location.href='{{ route('survey.index') }}'">
         </form>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
     </script>

@@ -10,7 +10,7 @@ return new class extends Migration
     {
         Schema::create('form', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('question_type')->nullable(); 
+            $table->unsignedBigInteger('form_type')->nullable(); 
             $table->unsignedBigInteger('survey_type')->nullable(); 
             $table->unsignedBigInteger('status');
             $table->string('title')->nullable();

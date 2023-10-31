@@ -3,18 +3,30 @@ function toggleQuestions(selectElement) {
     var answerContainer = questionContainer.querySelector(
         ".answer-container-main"
     );
+    var addButton = questionContainer.querySelector(".add_Question");
+    var questionTypeSelect = questionContainer.querySelector(".custom-select");
 
     if (selectElement.value !== "") {
         questionContainer.style.display = "block";
-        if (selectElement.value !== "1") {
-            // Mostrar el contenedor de respuestas si no es pregunta abierta
-            answerContainer.style.display = "block";
+
+        if (selectElement.value === "4") {
+            addButton.style.display = "none";
+            questionTypeSelect.style.display = "block";
         } else {
-            answerContainer.style.display = "none";
+            addButton.style.display = "block";
+            questionTypeSelect.style.display = "none";
+            if (selectElement.value !== "1") {
+                // Mostrar el contenedor de respuestas si no es pregunta abierta
+                answerContainer.style.display = "block";
+            } else {
+                answerContainer.style.display = "none";
+            }
         }
     } else {
         questionContainer.style.display = "none";
         answerContainer.style.display = "none";
+        addButton.style.display = "none";
+        questionTypeSelect.style.display = "none";
     }
 }
 
@@ -92,3 +104,54 @@ function addAnswer(btn) {
     // // Oculta el botón "+" de respuestas
     btn.style.display = "none";
 }
+// // Obtén una referencia al botón de cancelar
+// var cancelButton = document.getElementById("cancelButton");
+
+// // Agrega un evento click al botón de cancelar
+// cancelButton.addEventListener("click", function () {
+//     // Obtén una referencia al formulario
+//     var form = document.forms["question_type"];
+
+//     // Restablece los valores de los campos del formulario al valor por defecto
+//     form.reset();
+
+//     // Restablece los campos de preguntas y respuestas al estado por defecto
+//     resetQuestionFields();
+
+//     // Oculta o muestra los elementos según sea necesario (puedes agregar más lógica aquí si es necesario)
+//     toggleQuestions(form.querySelector("[name='form_type']"));
+// });
+
+// // Función para resetear los campos de preguntas y respuestas al estado por defecto
+// function resetQuestionFields() {
+//     // Encuentra todos los campos de pregunta y respuesta y restablece sus valores
+//     var questionFields = document.querySelectorAll('input[name^="questions"]');
+//     var answerFields = document.querySelectorAll('input[name^="answers"]');
+    
+//     // Itera sobre los campos de preguntas y respuestas y restablece sus valores
+//     questionFields.forEach(function (campo) {
+//         campo.value = "";
+//     });
+    
+//     answerFields.forEach(function (campo) {
+//         campo.value = "";
+//     });
+    
+//     // Restablece el contador de preguntas a 1
+//     questionCounter = 1;
+    
+//     // Elimina las preguntas adicionales si las hay
+//     var additionalQuestions = document.querySelectorAll('.input-container_question');
+//     additionalQuestions.forEach(function (questionDiv, index) {
+//         if (index > 0) {
+//             questionDiv.remove();
+//         }
+//     });
+    
+//     // Muestra el botón "+" de respuestas para la primera pregunta
+//     var firstQuestionDiv = document.querySelector('.input-container_question');
+//     var firstAnswerButton = firstQuestionDiv.querySelector('.add_Question');
+//     if (firstAnswerButton) {
+//         firstAnswerButton.style.display = "block";
+//     }
+// }

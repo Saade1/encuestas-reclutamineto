@@ -10,15 +10,20 @@ use Illuminate\Support\Str; // Importa la clase Str
 class Form extends Model
 {
     use HasFactory;
-     protected $table = "form";
+    protected $table = "form";
     protected $guarded = [];
 
     protected static function boot()
     {
         parent::boot();
 
-        static::saving(function ($survey) {
-            $survey->slug = Str::slug($survey->title, '-');
+        static::saving(function ($form) {
+
+            // Generar el slug a partir del título
+            $form->slug = Str::slug($form->title, '-');
+
+            // Establecer el valor de status en 2 al crear el formulario
+            $form->status = 2;
         });
     }
     public function getRouteKeyName()

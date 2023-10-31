@@ -23,20 +23,16 @@
             <div class="opcion">
                 <div>
                     <h1>Tipo de preguntas</h1>
-                    <select name="question_type" class="form-select" aria-label="Default select example">
+                    <select name="form_type" class="form-select" aria-label="Default select example">
                         <option value="" disabled selected>Selecciona una opción</option>
-                        <option value="1"
-                            {{ old('question_type', $survey->question_type) == '1' ? 'selected' : '' }}>
+                        <option value="1" {{ old('form_type', $survey->form_type) == '1' ? 'selected' : '' }}>
                             Abierta</option>
-                        <option value="2"
-                            {{ old('question_type', $survey->question_type) == '2' ? 'selected' : '' }}>
+                        <option value="2" {{ old('form_type', $survey->form_type) == '2' ? 'selected' : '' }}>
                             Opción
                             múltiple</option>
-                        <option value="3"
-                            {{ old('question_type', $survey->question_type) == '3' ? 'selected' : '' }}>Lista
+                        <option value="3" {{ old('form_type', $survey->form_type) == '3' ? 'selected' : '' }}>Lista
                         </option>
-                        <option value="4"
-                            {{ old('question_type', $survey->question_type) == '4' ? 'selected' : '' }}>
+                        <option value="4" {{ old('form_type', $survey->form_type) == '4' ? 'selected' : '' }}>
                             Combinada</option>
                     </select>
                 </div>
@@ -79,18 +75,17 @@
                         <div class="input-container_respuestas">
                             <div class="respuesta-texto">Respuestas:</div>
                             @php $responses = isset($surveyItem->responses) ? $surveyItem->responses : []; @endphp
-                            @for ($i = 0; $i < count($responses); $i += 2)
-                                <div class="grupo-respuestas">
-                                    @for ($j = $i; $j < $i + 2 && $j < count($responses); $j++)
+                            @foreach ($responses as $response)
+                                @if ($response->answer !== null)
+                                    <div class="grupo-respuestas">
                                         <input type="text" name="answers[{{ $index }}][]"
-                                            class="titulo_input" value="{{ $responses[$j]->answer }}">
-                                    @endfor
-                                </div>
-                            @endfor
+                                            class="titulo_input" value="{{ $response->answer }}">
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                 @endforeach
-                {{-- Preguntas y respuetas --}}
 
                 <div>
                     <input type="submit" class="botones" value="Guardar">
