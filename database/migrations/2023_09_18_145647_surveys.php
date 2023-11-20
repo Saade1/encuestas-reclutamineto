@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_form'); // Agrega la columna id_form, llave foranea
             $table->string('question')->nullable();
+            // $table->unsignedBigInteger('question_type')->nullable(); 
             $table->timestamps();
             $table->foreign('id_form')->references('id')->on('form')->onDelete('cascade')
             ->onUpdate('cascade');

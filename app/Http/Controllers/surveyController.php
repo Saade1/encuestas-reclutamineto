@@ -63,7 +63,7 @@ class SurveyController extends Controller
 
     public function update(SurveysSurvey $request, Form $survey)
     {
-        dd($request->all());
+        // dd($request->all());
         // Actualiza los detalles generales del formulario
         $survey->update($request->only([
             'form_type',

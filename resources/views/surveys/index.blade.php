@@ -51,7 +51,7 @@
                                     Opción Múltiple
                                 @elseif ($surveys->form_type == 3)
                                     Lista
-                                @elseif ($surveys->question_type == 4)
+                                @elseif ($surveys->form_type == 4)
                                     Combinada
                                 @endif
                             </td>
@@ -62,6 +62,8 @@
                                     En proceso
                                 @elseif ($surveys->status == 3)
                                     Terminada
+                                @elseif ($surveys->status == 4)
+                                    Combinada
                                 @endif
                             </td>
                             <td>
@@ -69,7 +71,6 @@
                                     @csrf
                                     <button type="submit" class="btn btn-primary">Editar</button>
                                 </form>
-
                             </td>
                             <td>
                                 <form action="{{ route('survey.destroy', $surveys) }}" method="POST">

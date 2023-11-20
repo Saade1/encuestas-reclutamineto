@@ -22,8 +22,8 @@ class Form extends Model
             // Generar el slug a partir del título
             $form->slug = Str::slug($form->title, '-');
 
-            // Establecer el valor de status en 2 al crear el formulario
-            $form->status = 2;
+            // Establecer el valor de status en  al crear el formulario
+            $form->status = 1;
         });
     }
     public function getRouteKeyName()

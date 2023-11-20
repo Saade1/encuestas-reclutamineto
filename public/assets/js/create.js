@@ -6,16 +6,21 @@ function toggleQuestions(selectElement) {
     var addButton = questionContainer.querySelector(".add_Question");
     var questionTypeSelect = questionContainer.querySelector(".custom-select");
 
-    if (selectElement.value !== "") {
+    // Obtener el valor seleccionado del segundo select
+    var formTypeSelect = document.getElementsByName("form_type")[0];
+    var selectedFormType = formTypeSelect.value;
+
+    if (selectedFormType !== "") {
         questionContainer.style.display = "block";
 
-        if (selectElement.value === "4") {
+        if (selectedFormType === "4") {
             addButton.style.display = "none";
             questionTypeSelect.style.display = "block";
         } else {
             addButton.style.display = "block";
             questionTypeSelect.style.display = "none";
-            if (selectElement.value !== "1") {
+
+            if (selectedFormType !== "1") {
                 // Mostrar el contenedor de respuestas si no es pregunta abierta
                 answerContainer.style.display = "block";
             } else {
@@ -68,6 +73,12 @@ function addQuestion(btn) {
     // Incrementa el contador de preguntas
     questionCounter++;
 
+    // Elimina el select del nuevo contenedor clonado
+    let newSelect = newQuestionDiv.querySelector(".custom-select");
+    if (newSelect) {
+        newSelect.remove();
+    }
+
     // Agrega los campos de pregunta, respuesta y un nuevo botón clonado al contenedor de preguntas
     document
         .getElementById("question-container-main")
@@ -104,54 +115,84 @@ function addAnswer(btn) {
     // // Oculta el botón "+" de respuestas
     btn.style.display = "none";
 }
-// // Obtén una referencia al botón de cancelar
-// var cancelButton = document.getElementById("cancelButton");
 
-// // Agrega un evento click al botón de cancelar
-// cancelButton.addEventListener("click", function () {
-//     // Obtén una referencia al formulario
-//     var form = document.forms["question_type"];
+document.getElementById("question-container-main").addEventListener("change", function (event) {
+    if (event.target.classList.contains("custom-select")) {
+        let questionDiv = event.target.parentElement;
+        let answerContainer = questionDiv.querySelector(".answer-container-main");
+        toggleAnswerContainer(event.target, answerContainer);
+    }
+});
 
-//     // Restablece los valores de los campos del formulario al valor por defecto
-//     form.reset();
+function addQuestionMixed(btn) {
+    // Clona el div que contiene los campos de pregunta y respuesta y el botón de agregar
+    let questionDiv = btn.parentElement;
+    let newQuestionDiv = questionDiv.cloneNode(true);
 
-//     // Restablece los campos de preguntas y respuestas al estado por defecto
-//     resetQuestionFields();
+    // Elimina el botón de pregunta del contenedor original
+    questionDiv.querySelector(".add_Question").remove();
 
-//     // Oculta o muestra los elementos según sea necesario (puedes agregar más lógica aquí si es necesario)
-//     toggleQuestions(form.querySelector("[name='form_type']"));
-// });
+    // Limpia los campos de texto clonados y actualiza los nombres de los campos de pregunta
+    let questions_Fields = newQuestionDiv.querySelectorAll(
+        'input[name^="questions"]'
+    );
+    questions_Fields.forEach(function (campo) {
+        campo.value = "";
+        campo.name = `questions[${questionCounter}]`;
+    });
 
-// // Función para resetear los campos de preguntas y respuestas al estado por defecto
-// function resetQuestionFields() {
-//     // Encuentra todos los campos de pregunta y respuesta y restablece sus valores
-//     var questionFields = document.querySelectorAll('input[name^="questions"]');
-//     var answerFields = document.querySelectorAll('input[name^="answers"]');
-    
-//     // Itera sobre los campos de preguntas y respuestas y restablece sus valores
-//     questionFields.forEach(function (campo) {
-//         campo.value = "";
-//     });
-    
-//     answerFields.forEach(function (campo) {
-//         campo.value = "";
-//     });
-    
-//     // Restablece el contador de preguntas a 1
-//     questionCounter = 1;
-    
-//     // Elimina las preguntas adicionales si las hay
-//     var additionalQuestions = document.querySelectorAll('.input-container_question');
-//     additionalQuestions.forEach(function (questionDiv, index) {
-//         if (index > 0) {
-//             questionDiv.remove();
-//         }
-//     });
-    
-//     // Muestra el botón "+" de respuestas para la primera pregunta
-//     var firstQuestionDiv = document.querySelector('.input-container_question');
-//     var firstAnswerButton = firstQuestionDiv.querySelector('.add_Question');
-//     if (firstAnswerButton) {
-//         firstAnswerButton.style.display = "block";
-//     }
-// }
+    // Encuentra el contenedor de respuestas de la pregunta actual y elimina los campos de respuesta adicionales
+    let answerContainer = newQuestionDiv.querySelector(
+        ".answer-container-main"
+    );
+    let responseFields = answerContainer.querySelectorAll(
+        'input[name^="answers"]'
+    );
+    responseFields.forEach(function (campo, index) {
+        if (index > 0) {
+            campo.parentElement.remove(); // Elimina campos de respuesta adicionales
+        } else {
+            campo.value = ""; // Limpia el primer campo de respuesta
+        }
+        campo.name = `answers[${questionCounter}][]`;
+    });
+
+    // Incrementa el contador de preguntas
+    questionCounter++;
+
+    // Agrega los campos de pregunta, respuesta y un nuevo botón clonado al contenedor de preguntas
+    document
+        .getElementById("question-container-main")
+        .appendChild(newQuestionDiv);
+
+    // Muestra el botón "+" de respuestas para la pregunta actual
+    let answerButton = newQuestionDiv.querySelector(".add_Answer");
+    answerButton.style.display = "block";
+
+    // Asegúrate de mostrar el tipo de pregunta select después de clonar
+    let questionTypeSelect = newQuestionDiv.querySelector(".custom-select");
+    questionTypeSelect.style.display = "block";
+
+    // Agrega un evento onchange al nuevo select de tipo de pregunta
+    questionTypeSelect.addEventListener("change", function () {
+        toggleAnswerContainer(this, answerContainer);
+    });
+
+    // Ejecuta la función toggleAnswerContainer para mostrar u ocultar los campos de respuesta según el tipo de pregunta
+    toggleAnswerContainer(questionTypeSelect, answerContainer);
+}
+
+// Nueva función para mostrar u ocultar los campos de respuesta según el tipo de pregunta seleccionado
+function toggleAnswerContainer(selectElement, answerContainer) {
+    console.log("Value selected: ", selectElement.value);
+    if (selectElement.value !== "") {
+        if (selectElement.value !== "1") {
+            // Mostrar el contenedor de respuestas si no es pregunta abierta
+            answerContainer.style.display = "block";
+        } else {
+            answerContainer.style.display = "none";
+        }
+    } else {
+        answerContainer.style.display = "none";
+    }
+}

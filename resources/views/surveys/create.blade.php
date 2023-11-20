@@ -40,17 +40,6 @@
                         <option value="2" {{ old('survey_type') == '2' ? 'selected' : '' }}>Público</option>
                     </select>
                 </div>
-                {{-- <div>
-                    <h1>status</h1>
-                    <select class="custom-select" name="status" aria-label=".form-select-lg example">
-                        <option value="" disabled selected>Selecciona una opción</option>
-                        <option value="1" {{ old('Editando') == '1' ? 'selected' : '' }}>Editando</option>
-                        <option value="2" {{ old('En proceso') == '2' ? 'selected' : '' }}>En proceso
-                        </option>
-                        <option value="3" {{ old('Terminada') == '3' ? 'selected' : '' }}>Terminada
-                        </option>
-                    </select>
-                </div> --}}
             </div>
             <div class="input-container">
                 <label class="titulo_label"><b>Fecha de vigencia</b></label>
@@ -72,14 +61,12 @@
                     <label class="titulo_label"><b>PREGUNTA:</b></label>
                     <input type="text" name="questions[0]" class="titulo_input">
                     <input type="button" class="add_Question" value="+" onclick="addQuestion(this)">
-                    <select class="custom-select" aria-label=".form-select-lg example" onchange="toggleQuestions(this)"
+                    <select class="custom-select" aria-label=".form-select-lg example" onchange="addQuestionMixed(this)"
                         style="display: none;">
                         <option value="" disabled selected>Selecciona una opción</option>
-                        <option value="1" {{ old('') == '1' ? 'selected' : '' }}>Abierta
-                        </option>
-                        <option value="2" {{ old('') == '2' ? 'selected' : '' }}>
-                            Opción múltiple</option>
-                        <option value="3" {{ old('') == '3' ? 'selected' : '' }}>Lista</option>
+                        <option value="1">Abierta</option>
+                        <option value="2">Opción múltiple</option>
+                        <option value="3">Lista</option>
                     </select>
                     <div class="answer-container-main" style="display: none;">
                         <div class="answer-container">
