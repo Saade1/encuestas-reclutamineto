@@ -65,27 +65,33 @@
                     class="titulo_input" required>
             </div>
             <div>
-                {{-- preguntas y respuetas  --}}
-                @foreach ($survey->surveys as $index => $surveyItem)
-                    <div class="input-container_pregunta">
-                        <label class="titulo_label"><b>PREGUNTA {{ $index + 1 }}:</b></label>
-                        <input type="text" name="questions[{{ $index }}]" class="titulo_input"
-                            value="{{ $surveyItem->question }}" required>
+                <div id="question-container-main">
+                    {{-- <h1>Preguntas</h1> --}}
+                    @foreach ($survey->surveys as $index => $surveyItem)
+                        <div class="input-container_question">
+                            <label class="titulo_label"><b>PREGUNTA {{ $index + 1 }}:</b></label>
+                            <input type="text" name="questions[{{ $index }}]" class="titulo_input"
+                                value="{{ $surveyItem->question }}" required>
+                            <input type="button" class="add_Question" value="+" onclick="addQuestion(this)">
 
-                        <div class="input-container_respuestas">
-                            <div class="respuesta-texto">Respuestas:</div>
-                            @php $responses = isset($surveyItem->responses) ? $surveyItem->responses : []; @endphp
-                            @foreach ($responses as $response)
-                                @if ($response->answer !== null)
-                                    <div class="grupo-respuestas">
-                                        <input type="text" name="answers[{{ $index }}][]"
-                                            class="titulo_input" value="{{ $response->answer }}">
-                                    </div>
-                                @endif
-                            @endforeach
+                            <div class="input-container_respuestas">
+                                <div class="respuesta-texto">Respuestas:</div>
+
+                                @php $responses = isset($surveyItem->responses) ? $surveyItem->responses : []; @endphp
+                                @foreach ($responses as $response)
+                                    @if ($response->answer !== null)
+                                        <div class="grupo-respuestas">
+                                            <input type="text" name="answers[{{ $index }}][]"
+                                                class="titulo_input" value="{{ $response->answer }}">
+                                            <input type="button" class="add_Answer" value="+"
+                                                onclick="addAnswer(this)">
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
 
                 <div>
                     <input type="submit" class="botones" value="Guardar">

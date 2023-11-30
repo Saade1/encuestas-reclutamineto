@@ -11,11 +11,8 @@ class AppServiceProvider extends ServiceProvider
     {
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
-        Route::resourceVerbs(['create'=>'crear','edit'=>'editar']);
+        Route::resourceVerbs(['create' => 'crear', 'edit' => 'editar']);
     }
 }

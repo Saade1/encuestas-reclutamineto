@@ -26,14 +26,14 @@
                 <thead class="table-light">
                     <tr>
                         <th>#</th>
-                        <th>TITULO</th>
-                        <th>fecha y hora de creacion.</th>
-                        <th>fecha y hora de actulizacion</th>
-                        <th>fecha y hora de vigencia</th>
-                        <th>tipo</th>
-                        <th>estatus</th>
+                        <th>Titulo</th>
+                        <th>Fecha y hora de creacion.</th>
+                        <th>Fecha y hora de actulizacion</th>
+                        <th>Fecha y hora de vigencia</th>
+                        <th>Tipo</th>
+                        <th>Estatus</th>
                         <th>Editar</th>
-                        <th>eliminar</th>
+                        <th>Eliminar</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">

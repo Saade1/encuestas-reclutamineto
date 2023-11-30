@@ -20,8 +20,7 @@ class SurveyController extends Controller
 
     public function store(SurveysSurvey $request)
     {
-         dd($request->all());
-        // Crea el formulario
+
         $form = Form::create($request->only([
             'form_type',
             'survey_type',
@@ -31,18 +30,14 @@ class SurveyController extends Controller
             'effective_date',
         ]));
 
-        // Obtiene las preguntas y respuestas del formulario
         $questions = $request->input('questions', []);
-        $answers = $request->input('answers', []); // Asegúrate de que los nombres de los campos coincidan con los del formulario
+        $answers = $request->input('answers', []); 
 
-
-        // Asocia cada pregunta y respuesta al formulario
         foreach ($questions as $key => $question) {
             $newQuestion = $form->surveys()->create([
                 'question' => $question,
             ]);
 
-            // Asocia respuestas con la pregunta
             if (isset($answers[$key])) {
                 foreach ($answers[$key] as $answer) {
                     $newQuestion->responses()->create([
@@ -63,7 +58,7 @@ class SurveyController extends Controller
 
     public function update(SurveysSurvey $request, Form $survey)
     {
-        // dd($request->all());
+        dd($request->all());
         // Actualiza los detalles generales del formulario
         $survey->update($request->only([
             'form_type',
