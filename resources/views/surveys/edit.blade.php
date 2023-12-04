@@ -66,23 +66,20 @@
             </div>
             <div>
                 <div id="question-container-main">
-                    {{-- <h1>Preguntas</h1> --}}
-                    @foreach ($survey->surveys as $index => $surveyItem)
+                    @foreach ($survey->surveys as $questionIndex => $surveyItem)
                         <div class="input-container_question">
-                            <label class="titulo_label"><b>PREGUNTA {{ $index + 1 }}:</b></label>
-                            <input type="text" name="questions[{{ $index }}]" class="titulo_input"
-                                value="{{ $surveyItem->question }}" required>
+                            <label class="titulo_label"><b>PREGUNTA {{ $questionIndex + 1 }}:</b></label>
+                            <input type="text" name="questions[{{ $questionIndex }}]" class="titulo_input"
+                                value="{{ old('questions.'.$questionIndex, $surveyItem->question) }}" required>
                             <input type="button" class="add_Question" value="+" onclick="addQuestion(this)">
-
                             <div class="input-container_respuestas">
                                 <div class="respuesta-texto">Respuestas:</div>
-
                                 @php $responses = isset($surveyItem->responses) ? $surveyItem->responses : []; @endphp
-                                @foreach ($responses as $response)
+                                @foreach ($responses as $responseIndex => $response)
                                     @if ($response->answer !== null)
                                         <div class="grupo-respuestas">
-                                            <input type="text" name="answers[{{ $index }}][]"
-                                                class="titulo_input" value="{{ $response->answer }}">
+                                            <input type="text" name="answers[{{ $questionIndex }}][{{ $responseIndex }}]"
+                                                class="titulo_input" value="{{ old('answers.'.$questionIndex.'.'.$responseIndex, $response->answer) }}">
                                             <input type="button" class="add_Answer" value="+"
                                                 onclick="addAnswer(this)">
                                         </div>
@@ -92,6 +89,9 @@
                         </div>
                     @endforeach
                 </div>
+                
+                
+                
 
                 <div>
                     <input type="submit" class="botones" value="Guardar">
