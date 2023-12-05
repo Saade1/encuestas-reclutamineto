@@ -24,6 +24,17 @@ function addQuestion(element) {
 
     // Append the new question container
     questionContainer.parentNode.appendChild(newQuestionContainer);
+
+    
+    // Mostrar el botón '+' en la última pregunta clonada
+    var isLastQuestion = newIndex === document.querySelectorAll('.input-container_question').length - 1;
+    newQuestionContainer.querySelector('.add_Question').style.display = isLastQuestion ? '' : 'none';
+
+    // Append the new question container
+    questionContainer.parentNode.appendChild(newQuestionContainer);
+
+    // Ocultar el botón '+' del botón actual
+    element.style.display = 'none';
 }
 
 function addAnswer(element) {

@@ -23,17 +23,20 @@
             <div class="opcion">
                 <div>
                     <h1>Tipo de preguntas</h1>
-                    <select name="form_type" class="form-select" aria-label="Default select example">
+                    <select class="form-select" aria-label="Default select example" disabled>
                         <option value="" disabled selected>Selecciona una opción</option>
                         <option value="1" {{ old('form_type', $survey->form_type) == '1' ? 'selected' : '' }}>
-                            Abierta</option>
+                            Abierta
+                        </option>
                         <option value="2" {{ old('form_type', $survey->form_type) == '2' ? 'selected' : '' }}>
-                            Opción
-                            múltiple</option>
-                        <option value="3" {{ old('form_type', $survey->form_type) == '3' ? 'selected' : '' }}>Lista
+                            Opción múltiple
+                        </option>
+                        <option value="3" {{ old('form_type', $survey->form_type) == '3' ? 'selected' : '' }}>
+                            Lista
                         </option>
                         <option value="4" {{ old('form_type', $survey->form_type) == '4' ? 'selected' : '' }}>
-                            Combinada</option>
+                            Combinada
+                        </option>
                     </select>
                 </div>
                 <div>
@@ -70,16 +73,19 @@
                         <div class="input-container_question">
                             <label class="titulo_label"><b>PREGUNTA {{ $questionIndex + 1 }}:</b></label>
                             <input type="text" name="questions[{{ $questionIndex }}]" class="titulo_input"
-                                value="{{ old('questions.'.$questionIndex, $surveyItem->question) }}" required>
-                            <input type="button" class="add_Question" value="+" onclick="addQuestion(this)">
+                                value="{{ old('questions.' . $questionIndex, $surveyItem->question) }}" required>
+                            <input type="button" class="add_Question" value="+" onclick="addQuestion(this)"
+                                style="{{ $questionIndex === count($survey->surveys) - 1 ? '' : 'display: none;' }}">
                             <div class="input-container_respuestas">
                                 <div class="respuesta-texto">Respuestas:</div>
                                 @php $responses = isset($surveyItem->responses) ? $surveyItem->responses : []; @endphp
                                 @foreach ($responses as $responseIndex => $response)
                                     @if ($response->answer !== null)
                                         <div class="grupo-respuestas">
-                                            <input type="text" name="answers[{{ $questionIndex }}][{{ $responseIndex }}]"
-                                                class="titulo_input" value="{{ old('answers.'.$questionIndex.'.'.$responseIndex, $response->answer) }}">
+                                            <input type="text"
+                                                name="answers[{{ $questionIndex }}][{{ $responseIndex }}]"
+                                                class="titulo_input"
+                                                value="{{ old('answers.' . $questionIndex . '.' . $responseIndex, $response->answer) }}">
                                             <input type="button" class="add_Answer" value="+"
                                                 onclick="addAnswer(this)">
                                         </div>
@@ -89,10 +95,6 @@
                         </div>
                     @endforeach
                 </div>
-                
-                
-                
-
                 <div>
                     <input type="submit" class="botones" value="Guardar">
                     <input type="button" class="botones" value="Regresar a encuestas"

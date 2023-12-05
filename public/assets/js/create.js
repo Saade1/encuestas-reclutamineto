@@ -116,13 +116,17 @@ function addAnswer(btn) {
     btn.style.display = "none";
 }
 
-document.getElementById("question-container-main").addEventListener("change", function (event) {
-    if (event.target.classList.contains("custom-select")) {
-        let questionDiv = event.target.parentElement;
-        let answerContainer = questionDiv.querySelector(".answer-container-main");
-        toggleAnswerContainer(event.target, answerContainer);
-    }
-});
+document
+    .getElementById("question-container-main")
+    .addEventListener("change", function (event) {
+        if (event.target.classList.contains("custom-select")) {
+            let questionDiv = event.target.parentElement;
+            let answerContainer = questionDiv.querySelector(
+                ".answer-container-main"
+            );
+            toggleAnswerContainer(event.target, answerContainer);
+        }
+    });
 
 function addQuestionMixed(btn) {
     // Clona el div que contiene los campos de pregunta y respuesta y el botón de agregar
