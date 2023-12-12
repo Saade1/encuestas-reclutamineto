@@ -71,26 +71,38 @@
                 <div id="question-container-main">
                     @foreach ($survey->surveys as $questionIndex => $surveyItem)
                         <div class="input-container_question">
-                            <label class="titulo_label"><b>PREGUNTA {{ $questionIndex + 1 }}:</b></label>
+                            <label class="titulo_label"><b>Pregunta {{ $questionIndex + 1 }}:</b></label>
                             <input type="text" name="questions[{{ $questionIndex }}]" class="titulo_input"
                                 value="{{ old('questions.' . $questionIndex, $surveyItem->question) }}" required>
                             <input type="button" class="add_Question" value="+" onclick="addQuestion(this)"
                                 style="{{ $questionIndex === count($survey->surveys) - 1 ? '' : 'display: none;' }}">
-                            <div class="input-container_respuestas">
-                                <div class="respuesta-texto">Respuestas:</div>
-                                @php $responses = isset($surveyItem->responses) ? $surveyItem->responses : []; @endphp
-                                @foreach ($responses as $responseIndex => $response)
-                                    @if ($response->answer !== null)
-                                        <div class="grupo-respuestas">
-                                            <input type="text"
-                                                name="answers[{{ $questionIndex }}][{{ $responseIndex }}]"
-                                                class="titulo_input"
-                                                value="{{ old('answers.' . $questionIndex . '.' . $responseIndex, $response->answer) }}">
-                                            <input type="button" class="add_Answer" value="+"
-                                                onclick="addAnswer(this)">
-                                        </div>
-                                    @endif
-                                @endforeach
+
+                            <input type="button" class="delete_Question" value="-"
+                                onclick="deleteQuestion(this, {{ $questionIndex }})"> <label
+                                class="titulo_label"><b></b></label>
+
+                            <div class="answer-container-main">
+                                <div class="answer-container">
+                                    <div class="input-container_answers">
+                                        <label class="titulo_label"><b>Respuestas:</b></label>
+                                        @php $responses = isset($surveyItem->responses) ? $surveyItem->responses : []; @endphp
+                                        @foreach ($responses as $responseIndex => $response)
+                                            @if ($response->answer !== null)
+                                                <div class="grupo-respuestas">
+                                                    <input type="text"
+                                                        name="answers[{{ $questionIndex }}][{{ $responseIndex }}]"
+                                                        class="titulo_input"
+                                                        value="{{ old('answers.' . $questionIndex . '.' . $responseIndex, $response->answer) }}">
+                                                    <input type="button" class="add_Answer" value="+"
+                                                        onclick="addAnswer(this)">
+                                                    <input type="button" class="delete_Answer" value="-"
+                                                        onclick="deleteAnswer(this, {{ $questionIndex }}, {{ $responseIndex }})">
+
+                                                </div>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     @endforeach

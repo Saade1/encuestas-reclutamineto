@@ -31,7 +31,7 @@ class SurveyController extends Controller
         ]));
 
         $questions = $request->input('questions', []);
-        $answers = $request->input('answers', []); 
+        $answers = $request->input('answers', []);
 
         foreach ($questions as $key => $question) {
             $newQuestion = $form->surveys()->create([
@@ -105,5 +105,19 @@ class SurveyController extends Controller
     {
 
         return view('surveys.progreso');
+    }
+
+    public function deleteQuestion($surveyId, $questionId)
+    {
+        $question = Form::find($surveyId)->surveys()->find($questionId);
+        $question->delete();
+        return redirect()->back()->with('success', 'Pregunta eliminada correctamente.');
+    }
+
+    public function deleteAnswer($surveyId, $questionId, $answerId)
+    {
+        $answer = Form::find($surveyId)->surveys()->find($questionId)->responses()->find($answerId);
+        $answer->delete();
+        return redirect()->back()->with('success', 'Respuesta eliminada correctamente.');
     }
 }

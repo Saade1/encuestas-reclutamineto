@@ -29,3 +29,6 @@ Route::post('/encuestas/store', [surveyController::class, 'progreso'])->name('su
 Route::get('responder', [EmailController::class, 'index'])->name('responder.index');
 
 Route::post('responder', [EmailController::class, 'store'])->name('responder.store');
+
+Route::get('/encuestas/{surveyId}/delete-question/{questionId}', [surveyController::class, 'deleteQuestion'])->name('survey.deleteQuestion');
+Route::get('/encuestas/{surveyId}/delete-answer/{questionId}/{answerId}', [surveyController::class, 'deleteAnswer'])->name('survey.deleteAnswer');

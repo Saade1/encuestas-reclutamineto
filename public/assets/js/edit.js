@@ -55,3 +55,20 @@ function addAnswer(element) {
     // Append the new answer container
     answerContainer.parentNode.appendChild(newAnswerContainer);
 }
+
+// Función para eliminar una pregunta
+function deleteQuestion(element, questionIndex) {
+    // Eliminar la pregunta del DOM
+    element.parentNode.remove();
+
+    // Puedes realizar acciones adicionales aquí, como enviar una solicitud AJAX para eliminar la pregunta en el servidor
+}
+
+// Función para eliminar una respuesta
+function deleteAnswer(element, questionIndex, responseIndex) {
+    // Eliminar la respuesta del DOM
+    element.parentNode.remove();
+
+    // Puedes realizar acciones adicionales aquí, como enviar una solicitud AJAX para eliminar la respuesta en el servidor
+}
+

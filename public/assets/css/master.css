@@ -1,14 +1,12 @@
 .custom-select {
-    background-color: #AFF4C6; /* Cambiar el color de fondo */
+    background-color: #aff4c6; /* Cambiar el color de fondo */
     height: 30px;
     width: 250px;
     margin: 24px;
     display: inline-block;
     vertical-align: top;
-    border-radius: 30px; 
+    border-radius: 30px;
     border: none;
-    
-    
 }
 .botones {
     background-color: #70cad2; /* Cambiar el color de fondo */
@@ -16,22 +14,28 @@
     width: 180px;
     margin: 24px;
     display: inline-block;
-    vertical-align: top; 
-    border-radius: 30px; 
+    vertical-align: top;
+    border-radius: 30px;
     border: none;
-    
-    
 }
 .add_Question {
-    background-color: #AFF4C6; /* Cambiar el color de fondo */
+    background-color: #aff4c6; /* Cambiar el color de fondo */
     height: 30px;
     width: 30px;
     margin: 24px;
     display: inline-block;
-    vertical-align: top; 
+    vertical-align: top;
     border: none;
-    
-    
+}
+
+.delete_Question {
+    background-color: #ff0000; /* Cambiar el color de fondo a rojo */
+    height: 30px;
+    width: 30px;
+    margin: 24px;
+    display: inline-block;
+    vertical-align: top;
+    border: none;
 }
 
 .add_Answer {
@@ -40,22 +44,32 @@
     width: 30px;
     margin: 24px;
     display: inline-block;
-    vertical-align: top; 
+    vertical-align: top;
+    border: none;
+}
+
+.delete_Answer {
+    background-color: #ff0000; /* Cambiar el color de fondo a rojo */
+    height: 30px;
+    width: 30px;
+    margin: 24px;
+    display: inline-block;
+    vertical-align: top;
     border: none;
 }
 
 .question {
     margin-bottom: 10px;
-  }
-  .answer {
+}
+.answer {
     margin-left: 20px;
     margin-bottom: 10px;
-  }
+}
 
 /* Estilo para el label */
 .titulo_label {
     font-size: 15px; /* Cambia el tamaño de fuente según tus preferencias */
-    margin-left: 30px;
+    margin-left: 10px;
     margin-right: 10px; /* Label takes up all available space */
 }
 
@@ -64,7 +78,7 @@
     font-size: 16px; /* Cambia el tamaño de fuente según tus preferencias */
     width: 300px; /* Cambia el ancho según tus preferencias */
     height: 40px; /* Cambia la altura según tus preferencias */
-    border-radius: 5px; 
+    border-radius: 5px;
     background-color: #e6e6e6;
     border: none;
     margin-top: 10px;
@@ -85,7 +99,6 @@
 .opcion h1 {
     display: inline-block;
     vertical-align: middle; /* Alinea verticalmente el contenido */
-    
 }
 
 .opcion h1 {
@@ -93,27 +106,23 @@
     margin-left: 30px;
 }
 .centrar-h1 {
-text-align: center; /* Centra el texto horizontalmente */
-display: flex;
-justify-content: center; /* Centra el contenido verticalmente */
-align-items: center;
-height: 3vh; /* Opcional: ajusta la altura del contenedor al 100% del viewport */
-margin-top: 50px;
-/* Estilo para el menú oculto */
-
-
+    text-align: center; /* Centra el texto horizontalmente */
+    display: flex;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center;
+    height: 3vh; /* Opcional: ajusta la altura del contenedor al 100% del viewport */
+    margin-top: 50px;
+    /* Estilo para el menú oculto */
 }
 .custom-select {
-    background-color: #70CAD2; /* Cambiar el color de fondo */
+    background-color: #70cad2; /* Cambiar el color de fondo */
     height: 30px;
     width: 250px;
     margin: 24px;
     display: inline-block;
     vertical-align: top;
-    border-radius: 30px; 
+    border-radius: 30px;
     border: none;
-    
-    
 }
 .custom-select2 {
     background-color: #e6e6e6; /* Cambiar el color de fondo */
@@ -122,10 +131,8 @@ margin-top: 50px;
     margin: 24px;
     display: inline-block;
     vertical-align: top;
-    border-radius: 30px; 
+    border-radius: 30px;
     border: none;
-    
-    
 }
 /* Estilo para la tabla */
 .table-custom {
@@ -159,40 +166,40 @@ margin-top: 50px;
     background-color: #f9f9f9; /* Cambia el color de fondo de las filas pares */
 }
 .first-column {
-    background-color: #E4CCFF; /* Cambia el color de fondo de la primera columna */
+    background-color: #e4ccff; /* Cambia el color de fondo de la primera columna */
     font-weight: bold; /* Cambia el estilo del texto en la primera columna (opcional) */
-    width: 5%
+    width: 5%;
 }
 .table-custom th {
-    background-color:  #84BFA0; ; /* Cambia el color de fondo de las celdas <th> */
+    background-color: #84bfa0; /* Cambia el color de fondo de las celdas <th> */
     color: white; /* Cambia el color del texto en las celdas <th> */
     text-align: center;
 }
 .centrar-h1 {
-text-align: center; /* Centra el texto horizontalmente */
-display: flex;
-justify-content: center; /* Centra el contenido verticalmente */
-align-items: center;
-height: 3vh; /* Opcional: ajusta la altura del contenedor al 100% del viewport */
-margin-top: 50px;
+    text-align: center; /* Centra el texto horizontalmente */
+    display: flex;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center;
+    height: 3vh; /* Opcional: ajusta la altura del contenedor al 100% del viewport */
+    margin-top: 50px;
 }
 .enlace-negro-sin-subrayado {
     color: black; /* Hace que el texto sea negro */
     text-decoration: none; /* Elimina la línea debajo del enlace */
-  }
-.centrar-h1 {
-text-align: center; /* Centra el texto horizontalmente */
-display: flex;
-justify-content: center; /* Centra el contenido verticalmente */
-align-items: center;
-height: 3vh; /* Opcional: ajusta la altura del contenedor al 100% del viewport */
-margin-top: 50px;
-/* Estilo para el menú oculto */
 }
-.for{
+.centrar-h1 {
+    text-align: center; /* Centra el texto horizontalmente */
+    display: flex;
+    justify-content: center; /* Centra el contenido verticalmente */
+    align-items: center;
+    height: 3vh; /* Opcional: ajusta la altura del contenedor al 100% del viewport */
+    margin-top: 50px;
+    /* Estilo para el menú oculto */
+}
+.for {
     height: 100%;
     width: 50%;
-    border-radius: 5px; 
+    border-radius: 5px;
     background-color: #b6b6b6;
 }
 .container {
@@ -204,25 +211,23 @@ margin-top: 50px;
     display: inline-block;
     vertical-align: middle;
 }
-.menuBottones{
+.menuBottones {
     height: 100%;
     width: 20%;
     margin-left: 10%;
     margin-top: 3%;
 }
 .botones2 {
-    background-color: #FCD19C; /* Cambiar el color de fondo */
+    background-color: #fcd19c; /* Cambiar el color de fondo */
     height: 30px;
     width: 180px;
     margin: 24px;
     display: inline-block;
-    vertical-align: top; 
-    border-radius: 30px; 
+    vertical-align: top;
+    border-radius: 30px;
     border: none;
-    
-    
 }
-.grafica{
+.grafica {
     margin-top: 3%;
     margin-bottom: 5%;
     margin-left: 5%;
@@ -232,18 +237,16 @@ margin-top: 50px;
 }
 
 .custom-select3 {
-    background-color: #70CAD2; /* Cambiar el color de fondo */
+    background-color: #70cad2; /* Cambiar el color de fondo */
     height: 30px;
     width: 250px;
-    border-radius: 30px; 
+    border-radius: 30px;
     border: none;
     margin-left: 10%;
     margin-top: 3%;
     margin-bottom: 2%;
-    
-    
 }
-.grafica2{
+.grafica2 {
     margin-top: 3%;
     margin-bottom: 5%;
     margin-left: 5%;
@@ -260,30 +263,30 @@ margin-top: 50px;
     align-items: center;
     margin-bottom: 1%;
     margin-left: 5.9%;
-    }
+}
 .input-container {
-        display: flex;
-        align-items: center;
-        margin-bottom: 2%;
-        margin-top: 3%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2%;
+    margin-top: 3%;
 }
 .input-container_indicasio {
     display: flex;
     align-items: center;
     margin-bottom: 2%;
     margin-left: 2.9%;
-    }
+}
 .input-container_question {
-        display: flex;
-        align-items: center;
-        margin-bottom: 2%;
-        margin-left: 3.5%;
-        }
-.encabezado{
+    display: flex;
+    align-items: center;
+    margin-bottom: 2%;
+    margin-left: 0.1%;
+}
+.encabezado {
     font-size: 5vw; /* Establece el tamaño del h1 en función del ancho de la pantalla */
     text-align: center; /* Centra el texto */
 }
-.grafica3{
+.grafica3 {
     margin-top: 3%;
     margin-bottom: 5%;
     margin-left: 5%;
