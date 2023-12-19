@@ -73,11 +73,33 @@
                                 </form>
                             </td>
                             <td>
-                                <form action="{{ route('survey.destroy', $surveys) }}" method="POST">
+                                <form id="deleteForm" action="{{ route('survey.destroy', $surveys) }}" method="POST">
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="btn btn-danger">Eliminar encuesta</button>
+                                    <button type="button" id="deleteButton" class="btn btn-danger">Eliminar
+                                        encuesta</button>
                                 </form>
+                                <div class="modal" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalTitle">¿Está seguro de borrar la
+                                                    encuesta {{ $surveys->id }}?</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Prueba.</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Cerrar</button>
+                                                <button type="button" id="confirmDeleteButton"
+                                                    class="btn btn-primary">Borrar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
@@ -96,6 +118,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
         integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="{{ asset('assets/js/index.js') }}"></script>
 </body>
 
 </html>

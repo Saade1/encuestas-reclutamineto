@@ -76,11 +76,9 @@
                                 value="{{ old('questions.' . $questionIndex, $surveyItem->question) }}" required>
                             <input type="button" class="add_Question" value="+" onclick="addQuestion(this)"
                                 style="{{ $questionIndex === count($survey->surveys) - 1 ? '' : 'display: none;' }}">
-
                             <input type="button" class="delete_Question" value="-"
                                 onclick="deleteQuestion(this, {{ $questionIndex }})"> <label
                                 class="titulo_label"><b></b></label>
-
                             <div class="answer-container-main">
                                 <div class="answer-container">
                                     <div class="input-container_answers">
@@ -97,7 +95,6 @@
                                                         onclick="addAnswer(this)">
                                                     <input type="button" class="delete_Answer" value="-"
                                                         onclick="deleteAnswer(this, {{ $questionIndex }}, {{ $responseIndex }})">
-
                                                 </div>
                                             @endif
                                         @endforeach

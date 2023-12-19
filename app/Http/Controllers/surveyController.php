@@ -107,17 +107,15 @@ class SurveyController extends Controller
         return view('surveys.progreso');
     }
 
-    public function deleteQuestion($surveyId, $questionId)
-    {
-        $question = Form::find($surveyId)->surveys()->find($questionId);
-        $question->delete();
-        return redirect()->back()->with('success', 'Pregunta eliminada correctamente.');
-    }
+    // public function deleteQuestion($surveyId, $questionId)
+    // {
+    //     $question = Form::find($surveyId)->surveys()->find($questionId);
+    //     $question->delete();
+    // }
 
-    public function deleteAnswer($surveyId, $questionId, $answerId)
-    {
-        $answer = Form::find($surveyId)->surveys()->find($questionId)->responses()->find($answerId);
-        $answer->delete();
-        return redirect()->back()->with('success', 'Respuesta eliminada correctamente.');
-    }
+    // public function deleteAnswer($surveyId, $questionId, $answerId)
+    // {
+    //     $answer = Form::find($surveyId)->surveys()->find($questionId)->responses()->find($answerId);
+    //     $answer->delete();
+    // }
 }
