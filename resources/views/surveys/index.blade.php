@@ -73,13 +73,14 @@
                                 </form>
                             </td>
                             <td>
-                                <form id="deleteForm" action="{{ route('survey.destroy', $surveys) }}" method="POST">
+                                <form class="deleteForm" action="{{ route('survey.destroy', $surveys) }}"
+                                    method="POST">
                                     @csrf
                                     @method('delete')
-                                    <button type="button" id="deleteButton" class="btn btn-danger">Eliminar
-                                        encuesta</button>
+                                    <button type="button" class="btn btn-danger deleteButton" data-bs-toggle="modal"
+                                        data-bs-target="#myModal-{{ $surveys->id }}">Eliminar encuesta</button>
                                 </form>
-                                <div class="modal" tabindex="-1">
+                                <div class="modal" id="myModal-{{ $surveys->id }}" tabindex="-1">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -89,18 +90,27 @@
                                                     aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
-                                                <p>Prueba.</p>
+                                                <p>Al hacer clic en "Borrar", se eliminará permanentemente la encuesta.
+                                                    Esta acción no se puede deshacer. ¿Está seguro de que desea
+                                                    continuar?</p>
+                                                <p>Al hacer clic en "Cancelar", no se eliminará la encuesta y la acción
+                                                    se detendrá.</p>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-bs-dismiss="modal">Cerrar</button>
-                                                <button type="button" id="confirmDeleteButton"
+                                                <button type="submit" id="confirmDeleteButton"
                                                     class="btn btn-primary">Borrar</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </td>
+                            {{-- <form action="{{ route('survey.destroy', $surveys) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger">Eliminar encuesta</button>
+                            </form> --}}
                         </tr>
                     @endforeach
                 </tbody>

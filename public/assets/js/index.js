@@ -1,22 +1,26 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // Obtén el formulario, el botón y el botón de confirmación
-    var deleteForm = document.getElementById("deleteForm");
-    var deleteButton = document.getElementById("deleteButton");
-    var confirmDeleteButton = document.getElementById("confirmDeleteButton");
-    var modalTitle = document.getElementById("modalTitle");
+    // Obtén todos los botones de "Eliminar encuesta"
+    var deleteButtons = document.querySelectorAll(".deleteButton");
 
-    // Agrega un event listener al botón de eliminar
-    deleteButton.addEventListener("click", function () {
-        // Actualiza el título del modal con el ID de la encuesta
-
-        // Muestra el modal cuando se hace clic en el botón de eliminar
-        var myModal = new bootstrap.Modal(document.querySelector(".modal"));
-        myModal.show();
+    // Recorre todos los botones de "Eliminar encuesta"
+    deleteButtons.forEach(function (deleteButton) {
+        // Agrega un event listener a cada botón de "Eliminar encuesta"
+        deleteButton.addEventListener("click", function () {
+            // Muestra el modal correspondiente al botón de "Eliminar encuesta" clickeado
+            var targetModalId = deleteButton.getAttribute("data-bs-target");
+            var targetModal = new bootstrap.Modal(document.getElementById(targetModalId), {});
+            targetModal.show();
+        });
     });
 
     // Agrega un event listener al botón de confirmación de borrar
-    confirmDeleteButton.addEventListener("click", function () {
-        // Envía el formulario de eliminación al confirmar
-        deleteForm.submit();
+    var confirmDeleteButtons = document.querySelectorAll(".confirmDeleteButton");
+
+    confirmDeleteButtons.forEach(function (confirmDeleteButton) {
+        confirmDeleteButton.addEventListener("click", function () {
+            // Envía el formulario de eliminación al confirmar
+            var deleteForm = confirmDeleteButton.closest(".deleteForm");
+            deleteForm.submit();
+        });
     });
 });
