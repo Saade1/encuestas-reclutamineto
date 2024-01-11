@@ -8,16 +8,14 @@
     border-radius: 30px;
     border: none;
 }
-.botones {
-    background-color: #70cad2; /* Cambiar el color de fondo */
-    height: 30px;
-    width: 180px;
-    margin: 24px;
+.buttons {
+    margin: 24px 40px;
     display: inline-block;
     vertical-align: top;
     border-radius: 30px;
     border: none;
 }
+
 .add_Question {
     background-color: #aff4c6; /* Cambiar el color de fondo */
     height: 30px;
@@ -297,4 +295,8 @@
     width: 50%; /* Establece el ancho al 50% para que estén uno al lado del otro */
     padding: 10px; /* Agrega un espacio entre los contenedores si lo deseas */
     box-sizing: border-box; /* Incluye el padding en el ancho total del contenedor */
+}
+
+.hidden {
+    display: none;
 }

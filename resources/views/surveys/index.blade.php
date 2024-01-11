@@ -78,39 +78,35 @@
                                     @csrf
                                     @method('delete')
                                     <button type="button" class="btn btn-danger deleteButton" data-bs-toggle="modal"
-                                        data-bs-target="#myModal-{{ $surveys->id }}">Eliminar encuesta</button>
-                                </form>
-                                <div class="modal" id="myModal-{{ $surveys->id }}" tabindex="-1">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="modalTitle">¿Está seguro de borrar la
-                                                    encuesta {{ $surveys->id }}?</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <p>Al hacer clic en "Borrar", se eliminará permanentemente la encuesta.
-                                                    Esta acción no se puede deshacer. ¿Está seguro de que desea
-                                                    continuar?</p>
-                                                <p>Al hacer clic en "Cancelar", no se eliminará la encuesta y la acción
-                                                    se detendrá.</p>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Cerrar</button>
-                                                <button type="submit" id="confirmDeleteButton"
-                                                    class="btn btn-primary">Borrar</button>
+                                        data-bs-target="#myModal-{{ $surveys->id }}">Eliminar Encuesta</button>
+
+                                    <div class="modal" id="myModal-{{ $surveys->id }}" tabindex="-1">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="modalTitle">¿Está seguro de borrar la
+                                                        encuesta {{ $surveys->id }}?</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Al hacer clic en "Borrar", se eliminará permanentemente la
+                                                        encuesta. Esta acción no se puede deshacer. ¿Está seguro de que
+                                                        desea continuar?</p>
+                                                    <p>Al hacer clic en "Cancelar", no se eliminará la encuesta y la
+                                                        acción se detendrá.</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Cerrar</button>
+                                                    <button type="submit" id="confirmDeleteButton"
+                                                        class="btn btn-danger">Borrar</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </form>
                             </td>
-                            {{-- <form action="{{ route('survey.destroy', $surveys) }}" method="POST">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn btn-danger">Eliminar encuesta</button>
-                            </form> --}}
                         </tr>
                     @endforeach
                 </tbody>

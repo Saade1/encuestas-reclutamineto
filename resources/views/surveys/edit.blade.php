@@ -23,7 +23,7 @@
             <div class="opcion">
                 <div>
                     <h1>Tipo de preguntas</h1>
-                    <select class="form-select" aria-label="Default select example" disabled>
+                    <select id="form-type" class="form-select" aria-label="Default select example" disabled>
                         <option value="" disabled selected>Selecciona una opción</option>
                         <option value="1" {{ old('form_type', $survey->form_type) == '1' ? 'selected' : '' }}>
                             Abierta
@@ -79,7 +79,9 @@
                             <input type="button" class="delete_Question" value="-"
                                 onclick="deleteQuestion(this, {{ $questionIndex }})"> <label
                                 class="titulo_label"><b></b></label>
-                            <div class="answer-container-main">
+                            {{-- <div class="answer-container-main"> --}}
+                            <div
+                                class="answer-container-main form-type-open {{ old('form_type', $survey->form_type) == '1' ? 'hidden' : '' }}">
                                 <div class="answer-container">
                                     <div class="input-container_answers">
                                         <label class="titulo_label"><b>Respuestas:</b></label>
@@ -105,8 +107,9 @@
                     @endforeach
                 </div>
                 <div>
-                    <input type="submit" class="botones" value="Guardar">
-                    <input type="button" class="botones" value="Regresar a encuestas"
+                    <input class="btn btn-success buttons" type="submit" value="Guardar">
+                    <input type="button" class="btn btn-danger buttons" value="Cancelar" onclick=" location.href=''">
+                    <input type="button" class="btn btn-primary buttons" value="Regresar a encuestas"
                         onclick=" location.href='{{ route('survey.index') }}'">
                 </div>
             </div>
@@ -118,6 +121,7 @@
             integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
         </script>
         <script src="{{ asset('assets/js/edit.js') }}"></script>
+
 </body>
 
 </html>

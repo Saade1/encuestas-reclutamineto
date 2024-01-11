@@ -61,6 +61,7 @@
                     <label class="titulo_label"><b>PREGUNTA:</b></label>
                     <input type="text" name="questions[0]" class="titulo_input">
                     <input type="button" class="add_Question" value="+" onclick="addQuestion(this)">
+                    <input type="button" class="delete_Answer" value="-" onclick="deleteQuestion(this)">
                     <select class="custom-select" aria-label=".form-select-lg example" onchange="addQuestionMixed(this)"
                         style="display: none;">
                         <option value="" disabled selected>Selecciona una opción</option>
@@ -75,15 +76,16 @@
                                 <input type="text" name="answers[0][]" class="titulo_input">
                                 <input id="answer_Button" type="button" class="add_Answer" value="+"
                                     onclick="addAnswer(this)">
+                                <input type="button" class="delete_Answer" value="-" onclick="deleteAnswer(this)">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <input type="submit" class="botones" value="Guardar">
-            {{-- <input type="button" class="botones" id="cancelButton" value="Cancelar"> --}}
-            <input type="button" class="botones" value="Regresar a encuestas"
-                onclick="location.href='{{ route('survey.index') }}'">
+            <input class="btn btn-success buttons" type="submit" value="Guardar">
+            <input type="button" class="btn btn-danger buttons" value="Cancelar" onclick=" location.href=''">
+            <input type="button" class="btn btn-primary buttons" value= "Regresar a encuestas"
+                onclick=" location.href='{{ route('survey.index') }}'">
         </form>
     </div>
 

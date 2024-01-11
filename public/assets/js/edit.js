@@ -1,3 +1,28 @@
+document.addEventListener('DOMContentLoaded', function () {
+    // Obtén el elemento select
+    var formTypeSelect = document.getElementById('form-type');
+
+    // Obtén el contenedor de respuestas
+    var answerContainerMain = document.querySelector('.answer-container-main');
+
+    // Muestra u oculta el contenedor de respuestas al cargar la página
+    toggleAnswerContainer(formTypeSelect.value);
+
+    // Agrega un evento change al select para manejar cambios en la selección
+    formTypeSelect.addEventListener('change', function () {
+        toggleAnswerContainer(formTypeSelect.value);
+    });
+
+    // Función para mostrar u ocultar el contenedor de respuestas según la selección
+    function toggleAnswerContainer(selectedValue) {
+        if (selectedValue === '1') { // Tipo de pregunta "Abierta"
+            answerContainerMain.classList.add('hidden');
+        } else {
+            answerContainerMain.classList.remove('hidden');
+        }
+    }
+});
+
 function addQuestion(element) {
     var questionContainer = element.closest(".input-container_question");
     var newQuestionContainer = questionContainer.cloneNode(true);

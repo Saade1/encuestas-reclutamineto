@@ -200,3 +200,15 @@ function toggleAnswerContainer(selectElement, answerContainer) {
         answerContainer.style.display = "none";
     }
 }
+
+// Función para eliminar una pregunta
+function deleteQuestion(element) {
+    // Eliminar la pregunta del DOM
+    element.parentNode.remove();
+}
+
+// Función para eliminar una respuesta
+function deleteAnswer(element) {
+    // Eliminar la respuesta del DOM
+    element.parentNode.remove();
+}
