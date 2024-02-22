@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\editSurveys;
 use App\Models\Form;
+use App\Models\User;
 use App\Http\Requests\SurveysSurvey;
 
 class SurveyController extends Controller
@@ -52,13 +54,14 @@ class SurveyController extends Controller
 
     public function edit(Form $survey)
     {
-
+        // $users = User::all();
         return view('surveys.edit', compact('survey'));
     }
 
-    public function update(SurveysSurvey $request, Form $survey)
+
+    public function update(editSurveys $request, Form $survey)
     {
-        // dd($request->all());
+        dd($request->all());
         // Actualiza los detalles generales del formulario
         $survey->update($request->only([
             'form_type',
@@ -91,9 +94,10 @@ class SurveyController extends Controller
                 }
             }
         }
-
+        
         return redirect()->route('survey.index');
     }
+
 
     public function destroy(Form $survey)
     {
@@ -106,16 +110,4 @@ class SurveyController extends Controller
 
         return view('surveys.progreso');
     }
-
-    // public function deleteQuestion($surveyId, $questionId)
-    // {
-    //     $question = Form::find($surveyId)->surveys()->find($questionId);
-    //     $question->delete();
-    // }
-
-    // public function deleteAnswer($surveyId, $questionId, $answerId)
-    // {
-    //     $answer = Form::find($surveyId)->surveys()->find($questionId)->responses()->find($answerId);
-    //     $answer->delete();
-    // }
 }

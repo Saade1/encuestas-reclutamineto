@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str; // Importa la clase Str
 
 
@@ -35,4 +36,7 @@ class Form extends Model
     {
         return $this->hasMany(Survey::class, 'id_form');
     }
+
+   
+    
 }

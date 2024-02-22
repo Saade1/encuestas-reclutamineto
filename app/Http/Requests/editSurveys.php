@@ -4,8 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SurveysSurvey extends FormRequest
+class editSurveys extends FormRequest
 {
+    
     public function authorize(): bool
     {
         return true;
@@ -14,8 +15,8 @@ class SurveysSurvey extends FormRequest
     public function rules(): array
     {
         return [
-            'form_type' => 'required', 'survey_type' => 'required',
-            'title' => 'required', 'indications' => 'required', 'effective_date' => 'required'
+            // 'survey_type' => 'required',
+            // 'title' => 'required', 'indications' => 'required', 'effective_date' => 'required'
         ];
     }
 }

@@ -9,7 +9,7 @@
     border: none;
 }
 .buttons {
-    margin: 24px 40px;
+    margin: 24px 20px;
     display: inline-block;
     vertical-align: top;
     border-radius: 30px;
@@ -299,4 +299,17 @@
 
 .hidden {
     display: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #f2f2f2;
 }

@@ -107,5 +107,51 @@ function deleteAnswer(element) {
     // Eliminar la respuesta del DOM
     element.parentNode.remove();
 
-    // Puedes realizar acciones adicionales aquí, como enviar una solicitud AJAX para eliminar la respuesta en el servidor
 }
+
+function sendForm(route) {
+    var formId = document.getElementsByName("form_id")[0].value;
+    window.location.href = route + '?form_id=' + formId;
+}
+
+// $(document).ready(function () {
+//     // Manejar la visibilidad de los botones al cargar la página
+//     toggleBotones();
+
+//     // Manejar la visibilidad de los botones cuando se hace clic en "ENVIAR CUESTIONARIO"
+//     $("#enviarCuestionarioBtn").click(function () {
+//         toggleBotones();
+//     });
+// });
+
+// function toggleBotones() {
+//     // Obtener el estado del botón "ENVIAR CUESTIONARIO"
+//     var enviarCuestionarioSeleccionado = $("#enviarCuestionarioBtn").hasClass("active");
+
+//     // Mostrar u ocultar los botones de acuerdo al estado del botón "ENVIAR CUESTIONARIO"
+//     if (enviarCuestionarioSeleccionado) {
+//         $("#enviarTodosBtn").show();
+//         $("#seleccionarContactosBtn").show();
+//     } else {
+//         $("#enviarTodosBtn").hide();
+//         $("#seleccionarContactosBtn").hide();
+//         // También ocultar el contenedor de selección de usuarios
+//         $("#seleccionarUsuariosContainer").hide();
+//     }
+// }
+
+// $("#enviarCuestionarioBtn").click(function () {
+//     $(this).toggleClass("active");
+//     toggleBotones();
+// });
+
+// $("#seleccionarContactosBtn").click(function () {
+//     // Mostrar el contenedor de selección de usuarios cuando se hace clic en "SELECCIONAR CONTACTOS"
+//     $("#seleccionarUsuariosContainer").show();
+// });
+
+
+ // Inicializa Select2 en tu elemento select
+ $(document).ready(function() {
+    $('#user_id').select2();
+});

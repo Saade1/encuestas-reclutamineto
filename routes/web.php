@@ -9,23 +9,17 @@ use Illuminate\Support\Facades\Mail;
 // Ruta para el método index
 Route::get('/', [surveyController::class, 'index']);
 
-//metodos post,get,update y destroy
+//metodos post,get,update y destroy de encuestas 
 Route::resource('encuestas', surveyController::class)
     ->parameters(['encuestas' => 'survey'])
     ->names('survey');
 
+
+//metodos post,get,update y destroy de emials
+Route::resource('email',EmailController::class)->names('email');
+
+Route::get('/survey/form/{user_id}/{form_id}', 'SurveyController@showForm')->name('survey.form');
+
+
 //progreso
 Route::post('/encuestas/store', [surveyController::class, 'progreso'])->name('survey.progreso');
-
-
-//mandar encuesta a los usuarios
-// Route::get('send', function () {
-
-//     Mail::to('diosdelaguerra.satm@gmail.com')->send(new surveyMailable);
-
-//     return "Encuesta enviada";
-// })->name('survey.send');
-
-Route::get('responder', [EmailController::class, 'index'])->name('responder.index');
-
-Route::post('responder', [EmailController::class, 'store'])->name('responder.store');

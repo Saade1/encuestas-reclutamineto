@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="{{ asset('assets/css/master.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- Include jQuery and Select2 -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 </head>
 
 <body>
@@ -20,6 +24,8 @@
         <form action="{{ route('survey.update', $survey) }}" method="POST">
             @csrf
             @method('put')
+            <input type="hidden" name="form_id" value="{{ $survey->id }}">
+
             <div class="opcion">
                 <div>
                     <h1>Tipo de preguntas</h1>
@@ -107,10 +113,15 @@
                     @endforeach
                 </div>
                 <div>
-                    <input class="btn btn-success buttons" type="submit" value="Guardar">
-                    <input type="button" class="btn btn-danger buttons" value="Cancelar" onclick=" location.href=''">
-                    <input type="button" class="btn btn-primary buttons" value="Regresar a encuestas"
-                        onclick=" location.href='{{ route('survey.index') }}'">
+                    <input class="btn btn-success buttons" type="submit" value="GUARDAR">
+                    <input type="button" class="btn btn-danger buttons" value="CANCELAR" onclick="location.href=''">
+                    <input type="button" class="btn btn-primary buttons" value="REGRESAR A ENCUESTAS"
+                        onclick="location.href='{{ route('survey.index') }}'">
+                    {{-- <input type="button" class="btn btn-warning buttons" value="ENVIAR FORMULARIOS"
+                        onclick="location.href='{{ route('email.index') }}'"> --}}
+                        <input type="button" class="btn btn-warning buttons" value="ENVIAR FORMULARIOS" onclick="sendForm('{{ route('email.index') }}')">
+
+
                 </div>
             </div>
         </form>
