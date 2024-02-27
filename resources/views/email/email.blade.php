@@ -11,7 +11,7 @@
     <p>{{ $data['formData']->indications }}</p>
     <p>Por favor, responda antes del: {{ \Carbon\Carbon::parse($data['formData']->effective_date)->format('d/m/Y H:i') }}</p>
     <p>Para completar la encuesta, haga clic en el siguiente enlace:</p>
-    <a href="{{ $data['response_link'] }}">Responder encuesta</a>
+    <a href="{{ $data['response_link'] }}">Responde la encuesta aqui</a>
 
     <p>Aquí va el resto del contenido del correo electrónico...</p>
 </body>
