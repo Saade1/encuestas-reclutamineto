@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Mail;
 // use App\Http\Requests\SurveysSurvey;
 
-use App\Mail\SurveyMailable;
+use App\Mail\surveyMailable;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use App\Models\UserFormResponse;
@@ -29,22 +29,51 @@ class EmailController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->all());
         // Obtiene el ID del formulario de la solicitud
-    $formId = $request->input('form_id');
+        $formId = $request->input('form_id');
 
-    // Asocia los usuarios seleccionados con el formulario
-    foreach ($request->user_id as $userId) {
-        // Genera una URL firmada única para cada usuario
-        $responseLink = URL::temporarySignedRoute('survey.form', now()->addHours(24), ['user_id' => $userId, 'form_id' => $formId]);
+        // Variable para almacenar los usuarios a los que ya se les ha enviado el formulario
+        $alreadySentToUsers = [];
 
-        // Guarda la URL en la base de datos
-        UserFormResponse::create([
-            'user_id' => $userId,
-            'form_id' => $formId,
-            'response_link' => $responseLink,
-        ]);
-    }
+        // Asocia los usuarios seleccionados con el formulario
+        foreach ($request->user_id as $userId) {
+            // Verifica si ya se ha enviado el formulario a este usuario
+            $existingResponse = UserFormResponse::where('user_id', $userId)
+                ->where('form_id', $formId)
+                ->first();
 
+            if ($existingResponse) {
+                // Si ya existe una entrada, registra que ya se ha enviado el formulario a este usuario
+                $alreadySentToUsers[] = $userId;
+            } else {
+                // Si no existe una entrada, guarda una nueva entrada en la tabla UserFormResponse
+                // Genera una URL firmada única para cada usuario
+                $responseLink = URL::temporarySignedRoute('survey.form', now()->addHours(24), ['user_id' => $userId, 'form_id' => $formId]);
+
+                // Guarda la URL en la base de datos
+                UserFormResponse::create([
+                    'user_id' => $userId,
+                    'form_id' => $formId,
+                    'response_link' => $responseLink,
+                ]);
+
+                // Obtiene los detalles del formulario para enviarlos por correo electrónico
+                $formData = Form::find($formId);
+
+                // Envía el correo electrónico al usuario con el enlace generado y los detalles del formulario
+                $user = User::find($userId);
+                Mail::to($user->email)->send(new SurveyMailable(['formData' => $formData, 'response_link' => $responseLink]));
+            }
+        }
+
+        if (!empty($alreadySentToUsers)) {
+            // Aquí puedes hacer algo con los usuarios a los que ya se les ha enviado el formulario
+            // Por ejemplo, puedes mostrar un mensaje que indique a qué usuarios ya se les ha enviado el formulario
+            // Puedes personalizar este mensaje según tus necesidades
+            return redirect()->route('survey.index')->with('info', 'El formulario ya se ha enviado a los siguientes usuarios: ' . implode(', ', $alreadySentToUsers));
+        }
+
+        // Si no se ha enviado el formulario a ningún usuario existente, redirige a la página de índice de encuestas
+        return redirect()->route('survey.index');
     }
 }

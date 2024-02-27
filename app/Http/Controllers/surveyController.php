@@ -94,7 +94,7 @@ class SurveyController extends Controller
                 }
             }
         }
-        
+
         return redirect()->route('survey.index');
     }
 
