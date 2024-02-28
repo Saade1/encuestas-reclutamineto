@@ -2,13 +2,8 @@
 
 namespace App\Http\Controllers;
 
-// use App\Http\Requests\editSurveys;
-// use App\Mail\surveyMailable;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Mail;
-// use App\Http\Requests\SurveysSurvey;
-
-use App\Mail\surveyMailable;
+use App\Mail\SurveyMailable;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use App\Models\UserFormResponse;
@@ -25,7 +20,6 @@ class EmailController extends Controller
         $formId = $request->input('form_id');
         return view('email.send', compact('users', 'formId'));
     }
-
 
     public function store(Request $request)
     {
@@ -62,7 +56,12 @@ class EmailController extends Controller
 
                 // Envía el correo electrónico al usuario con el enlace generado y los detalles del formulario
                 $user = User::find($userId);
-                Mail::to($user->email)->send(new SurveyMailable(['formData' => $formData, 'response_link' => $responseLink]));
+                Mail::to($user->email)->send(new SurveyMailable([
+                    'name' => $user->name,
+                    'formData' => $formData,
+                    'response_link' => $responseLink,
+                    'sender_company' => 'HIGHTECH', // Cambia 'TuCargo' por el cargo del remitente
+                ]));
             }
         }
 
