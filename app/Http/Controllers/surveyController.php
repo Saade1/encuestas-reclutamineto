@@ -12,7 +12,6 @@ class SurveyController extends Controller
     public function index()
     {
         $survey = Form::orderBy('id', 'desc')->paginate();
-
         return view('surveys.index', compact('survey'));
     }
     public function create()
@@ -22,7 +21,7 @@ class SurveyController extends Controller
 
     public function store(SurveysSurvey $request)
     {
-
+        // dd($request->all());
         $form = Form::create($request->only([
             'form_type',
             'survey_type',
@@ -98,7 +97,6 @@ class SurveyController extends Controller
         return redirect()->route('survey.index');
     }
 
-
     public function destroy(Form $survey)
     {
         $survey->delete();
@@ -107,7 +105,6 @@ class SurveyController extends Controller
 
     public function progreso()
     {
-
         return view('surveys.progreso');
     }
 }

@@ -36,7 +36,4 @@ class Form extends Model
     {
         return $this->hasMany(Survey::class, 'id_form');
     }
-
-   
-    
 }

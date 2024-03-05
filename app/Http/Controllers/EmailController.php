@@ -18,7 +18,7 @@ class EmailController extends Controller
     {
         $users = User::all();
         $formId = $request->input('form_id');
-        return view('email.send', compact('users', 'formId'));
+        return view('users.send', compact('users', 'formId'));
     }
 
     public function store(Request $request)
@@ -75,4 +75,7 @@ class EmailController extends Controller
         // Si no se ha enviado el formulario a ningún usuario existente, redirige a la página de índice de encuestas
         return redirect()->route('survey.index');
     }
+
+    
+    
 }
