@@ -21,7 +21,7 @@
             @foreach ($survey_ids as $survey_id)
                 <input type="hidden" name="survey_ids[]" value="{{ $survey_id }}">
             @endforeach
-        
+
             @foreach ($questions as $question)
                 <input type="hidden" name="question_ids[]" value="{{ $question->id }}">
                 <label for="question_{{ $question->id }}">PREGUNTA: {{ $question->question }}</label>
@@ -29,21 +29,27 @@
                 @if ($question->form->form_type == 1)
                     <!-- Pregunta abierta -->
                     <textarea name="answers[{{ $question->id }}]" id="question_{{ $question->id }}"></textarea>
-                @elseif ($question->form->form_type == 2 || $question->form->form_type == 3)
-                    <!-- Pregunta de opción múltiple o lista -->
-                    <select class="custom-select" name="selected_responses[{{ $question->id }}][]" multiple>
+                @elseif ($question->form->form_type == 2)
+                    <!-- Pregunta de opción múltiple -->
+                    <select class="custom-select" name="selected_responses_single[{{ $question->id }}]">
                         @foreach ($question->responses as $response)
                             <option value="{{ $response->answer }}">{{ $response->answer }}</option>
                         @endforeach
                     </select>
-                    
+                @elseif ($question->form->form_type == 3)
+                    <!-- Pregunta de lista -->
+                    <select class="custom-select" name="selected_responses_multiple[{{ $question->id }}][]" multiple>
+                        @foreach ($question->responses as $response)
+                            <option value="{{ $response->answer }}">{{ $response->answer }}</option>
+                        @endforeach
+                    </select>
                 @endif
                 <br>
             @endforeach
-        
+
             <button type="submit">Enviar Respuestas</button>
         </form>
-        
+
     </div>
 </body>
 

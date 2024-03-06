@@ -22,9 +22,9 @@ class FormController extends Controller
             ->first();
 
         // Si el usuario ya ha respondido, redirecciona a alguna página de error o muestra un mensaje
-        // if ($userResponse) {
-        //     return view('form.finished');
-        // }
+        if ($userResponse) {
+            return view('form.finished');
+        }
 
         // Obtiene el formulario asociado al ID del formulario
         $form = Form::findOrFail($form_id);
@@ -65,9 +65,21 @@ class FormController extends Controller
                 UserResponse::create($answerData);
             }
 
-            // Si es una pregunta de opción múltiple o lista, guardamos las respuestas seleccionadas
-            if ($request->has("selected_responses.{$question_id}")) {
-                $selectedResponses = $request->input("selected_responses.{$question_id}");
+            // Si es una pregunta de opción múltiple, guardamos la respuesta seleccionada
+            if ($request->has("selected_responses_single.{$question_id}")) {
+                $response_text = $request->input("selected_responses_single.{$question_id}");
+                UserResponse::create([
+                    'user_id' => $user_id,
+                    'form_id' => $form_id,
+                    'survey_id' => $request->input('survey_ids')[$key],
+                    'question_id' => $question_id,
+                    'answer' => $response_text,
+                ]);
+            }
+
+            // Si es una pregunta de lista, guardamos las respuestas seleccionadas
+            if ($request->has("selected_responses_multiple.{$question_id}")) {
+                $selectedResponses = $request->input("selected_responses_multiple.{$question_id}");
                 foreach ($selectedResponses as $response_text) {
                     UserResponse::create([
                         'user_id' => $user_id,

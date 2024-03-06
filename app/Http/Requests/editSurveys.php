@@ -15,8 +15,8 @@ class editSurveys extends FormRequest
     public function rules(): array
     {
         return [
-            // 'survey_type' => 'required',
-            // 'title' => 'required', 'indications' => 'required', 'effective_date' => 'required'
+            'survey_type' => 'required',
+            'title' => 'required', 'indications' => 'required', 'effective_date' => 'required'
         ];
     }
 }
