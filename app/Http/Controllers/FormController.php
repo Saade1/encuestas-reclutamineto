@@ -22,9 +22,9 @@ class FormController extends Controller
             ->first();
 
         // Si el usuario ya ha respondido, redirecciona a alguna página de error o muestra un mensaje
-        if ($userResponse) {
-            return view('form.finished');
-        }
+        // if ($userResponse) {
+        //     return view('form.finished');
+        // }
 
         // Obtiene el formulario asociado al ID del formulario
         $form = Form::findOrFail($form_id);
@@ -50,14 +50,20 @@ class FormController extends Controller
     {
         // dd($request->all());
 
+        $user_name = $request->input('user_name');
+
         // Recorrer y guardar las respuestas seleccionadas y las respuestas abiertas
         foreach ($request->input('question_ids') as $key => $question_id) {
+
+            // Luego, en tu foreach, añade 'user_name' al array de datos que se van a guardar:
             $answerData = [
                 'user_id' => $user_id,
                 'form_id' => $form_id,
                 'survey_id' => $request->input('survey_ids')[$key],
                 'question_id' => $question_id,
+                'user_name' => $user_name, // Agregar el nombre del encuestado
             ];
+
 
             // Si es una pregunta abierta, guardamos la respuesta del textarea
             if ($request->has("answers.{$question_id}")) {
@@ -74,6 +80,7 @@ class FormController extends Controller
                     'survey_id' => $request->input('survey_ids')[$key],
                     'question_id' => $question_id,
                     'answer' => $response_text,
+                    'user_name' => $user_name,
                 ]);
             }
 
@@ -87,6 +94,7 @@ class FormController extends Controller
                         'survey_id' => $request->input('survey_ids')[$key],
                         'question_id' => $question_id,
                         'answer' => $response_text,
+                        'user_name' => $user_name,
                     ]);
                 }
             }

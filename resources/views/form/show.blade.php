@@ -18,12 +18,14 @@
         <p>INDICACIONES: {{ $form->indications }}</p>
         <form action="{{ route('survey.submit', ['user_id' => $user_id, 'form_id' => $form->id]) }}" method="post">
             @csrf
+            <lavel>NOMBRE DEL ENCUESTADO:</lavel>
+            <input type="text" name="user_name" {{ $form->survey_type == 2 ? 'required' : '' }}>
             @foreach ($survey_ids as $survey_id)
                 <input type="hidden" name="survey_ids[]" value="{{ $survey_id }}">
             @endforeach
-
             @foreach ($questions as $question)
                 <input type="hidden" name="question_ids[]" value="{{ $question->id }}">
+                
                 <label for="question_{{ $question->id }}">PREGUNTA: {{ $question->question }}</label>
                 <br>
                 @if ($question->form->form_type == 1)
@@ -48,6 +50,7 @@
             @endforeach
 
             <button type="submit">Enviar Respuestas</button>
+            <button type="button" class="btn-cancel" onclick="location.href=''">Cancelar</button>
         </form>
 
     </div>

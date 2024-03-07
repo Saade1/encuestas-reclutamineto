@@ -17,6 +17,7 @@ class UserResponse extends Model
         'user_id',
         'form_id',
         'survey_id',
+        'user_name', // Agregar el campo user_name
         'answer',
     ];
 

@@ -13,6 +13,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('form_id');
             $table->unsignedBigInteger('survey_id');
+            $table->string('user_name')->nullable(); // Agregar el campo user_name
             $table->string('answer')->nullable();
             $table->timestamps();
 
