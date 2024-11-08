@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('answer')->nullable();
             $table->timestamps();
 
-            // Definir la clave foránea
+            //foreign keys
             $table->foreign('id_survey')->references('id')->on('surveys')->onDelete('cascade')
             ->onUpdate('cascade');
         });
